@@ -1,0 +1,65 @@
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--=============== REMIXICONS ===============-->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<!--=============== CSS ===============-->
+<link href="{{ asset('css/style2.css') }}" rel="stylesheet"/>
+<title>{% block title %}Code Names {% endblock %}</title>
+{% endblock %}
+{% block body %}
+    {% block content %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+
+<section class="section_connexion">
+    <div class="container_connexion">
+        <h1 class="title_connexion">Se connecter </h1>
+        <form method="post">
+
+
+            <input type="text" value="{{ last_username }}" id="inputEmail" name="email" placeholder="jondoe@gmail.com" autocomplete="email" required autofocus>
+
+            <div class="login_box">
+                <input type="password" autocomplete="current-password" name="passw" placeholder="Mot de passe" required id="input-pass">
+                <i class="ri-eye-off-fill login_eye" id="input-icon"></i>
+            </div>
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+
+            <div class="bouton_connexion">
+                <input type="submit" value="Se connecter">
+                <a href="{{path('app_register')}}" class="inscription">S'inscrire</a>
+            </div>
+        </form>
+    </div>
+
+</section>
+
+
+
+
+
+    {#
+    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+    See https://symfony.com/doc/current/security/remember_me.html
+
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="_remember_me"> Remember me
+        </label>
+    </div>
+    #}
+{% endblock %}
+{% endblock %}

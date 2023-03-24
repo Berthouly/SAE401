@@ -1,0 +1,99 @@
+
+.title_connexion{
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+}
+
+input[type=text], select, input[type=password] {
+    width: 100%;
+    padding: 1rem;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    box-sizing: border-box;
+}
+
+input[type=submit], .inscription_button {
+    width: 100%;
+    background-color: #4F4F4F;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.inscription{
+    width: 100%;
+    background-color: transparent;
+    border: solid 1px #4F4F4F;
+    padding: 14px 0px;
+    margin: 8px 0;
+    border-radius: 1rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    color: #000;
+
+}
+
+.inscription:hover{
+    border: none;
+    transition: 0.3s;
+    background-color: #4F4F4F;
+    color: #fff;
+}
+
+input[type=submit]:hover {
+    background-color: #7e7e7e;
+}
+
+.container_connexion {
+    margin-top: 5rem;
+    border-radius: 2rem;
+    padding: 20px;
+    width: 40%;
+}
+
+.section_connexion{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    font-family: sans-serif;
+}
+
+form{
+    width: 60%;
+    margin: auto;
+}
+
+.bouton_connexion{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login_eye{
+    width: max-content;
+    height: max-content;
+    position: absolute;
+    right: .75rem;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.login_box{
+    position: relative;
+}
+
+.login_box .login_input{
+    padding-right: 36px;
+}
