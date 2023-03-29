@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MotPartieRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MotPartieRepository::class)]
+#[ApiResource]
+
 class MotPartie
 {
     #[ORM\Id]
@@ -13,112 +16,97 @@ class MotPartie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $colonne = null;
+    #[ORM\ManyToOne(inversedBy: 'motParties')]
+    private ?Mot $mot = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $ligne = null;
+    #[ORM\ManyToOne(inversedBy: 'motParties')]
+    private ?Partie $partie = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $couleur_J1 = null;
+    #[ORM\Column(length: 40)]
+    private ?string $couleurJ1 = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $couleur_J2 = null;
+    #[ORM\Column(length: 40)]
+    private ?string $couleurJ2 = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $jeton_J1 = null;
+    #[ORM\Column]
+    private ?int $emplacement = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $jeton_J2 = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $mot_trouve = null;
+    #[ORM\Column]
+    private ?bool $trouve = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getColonne(): ?string
+    public function getMot(): ?Mot
     {
-        return $this->colonne;
+        return $this->mot;
     }
 
-    public function setColonne(string $colonne): self
+    public function setMot(?Mot $mot): self
     {
-        $this->colonne = $colonne;
+        $this->mot = $mot;
 
         return $this;
     }
 
-    public function getLigne(): ?string
+    public function getPartie(): ?Partie
     {
-        return $this->ligne;
+        return $this->partie;
     }
 
-    public function setLigne(string $ligne): self
+    public function setPartie(?Partie $partie): self
     {
-        $this->ligne = $ligne;
+        $this->partie = $partie;
 
         return $this;
     }
 
     public function getCouleurJ1(): ?string
     {
-        return $this->couleur_J1;
+        return $this->couleurJ1;
     }
 
-    public function setCouleurJ1(string $couleur_J1): self
+    public function setCouleurJ1(string $couleurJ1): self
     {
-        $this->couleur_J1 = $couleur_J1;
+        $this->couleurJ1 = $couleurJ1;
 
         return $this;
     }
 
     public function getCouleurJ2(): ?string
     {
-        return $this->couleur_J2;
+        return $this->couleurJ2;
     }
 
-    public function setCouleurJ2(string $couleur_J2): self
+    public function setCouleurJ2(string $couleurJ2): self
     {
-        $this->couleur_J2 = $couleur_J2;
+        $this->couleurJ2 = $couleurJ2;
 
         return $this;
     }
 
-    public function getJetonJ1(): ?string
+    public function getEmplacement(): ?int
     {
-        return $this->jeton_J1;
+        return $this->emplacement;
     }
 
-    public function setJetonJ1(string $jeton_J1): self
+    public function setEmplacement(int $emplacement): self
     {
-        $this->jeton_J1 = $jeton_J1;
+        $this->emplacement = $emplacement;
 
         return $this;
     }
 
-    public function getJetonJ2(): ?string
+    public function isTrouve(): ?bool
     {
-        return $this->jeton_J2;
+        return $this->trouve;
     }
 
-    public function setJetonJ2(string $jeton_J2): self
+    public function setTrouve(bool $trouve): self
     {
-        $this->jeton_J2 = $jeton_J2;
-
-        return $this;
-    }
-
-    public function getMotTrouve(): ?string
-    {
-        return $this->mot_trouve;
-    }
-
-    public function setMotTrouve(string $mot_trouve): self
-    {
-        $this->mot_trouve = $mot_trouve;
+        $this->trouve = $trouve;
 
         return $this;
     }

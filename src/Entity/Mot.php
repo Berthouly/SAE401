@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MotRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MotRepository::class)]
+#[ApiResource]
 class Mot
 {
     #[ORM\Id]
@@ -13,37 +17,60 @@ class Mot
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $mot_fr = null;
+    #[ORM\Column(length: 100)]
+    private ?string $mot = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $mot_en = null;
+    #[ORM\OneToMany(mappedBy: 'mot', targetEntity: MotPartie::class)]
+    private Collection $motParties;
+
+    public function __construct()
+    {
+        $this->motParties = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getMotFr(): ?string
+    public function getMot(): ?string
     {
-        return $this->mot_fr;
+        return $this->mot;
     }
 
-    public function setMotFr(string $mot_fr): self
+    public function setMot(string $mot): self
     {
-        $this->mot_fr = $mot_fr;
+        $this->mot = $mot;
 
         return $this;
     }
 
-    public function getMotEn(): ?string
+    /**
+     * @return Collection<int, MotPartie>
+     */
+    public function getMotParties(): Collection
     {
-        return $this->mot_en;
+        return $this->motParties;
     }
 
-    public function setMotEn(string $mot_en): self
+    public function addMotParty(MotPartie $motParty): self
     {
-        $this->mot_en = $mot_en;
+        if (!$this->motParties->contains($motParty)) {
+            $this->motParties->add($motParty);
+            $motParty->setMot($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMotParty(MotPartie $motParty): self
+    {
+        if ($this->motParties->removeElement($motParty)) {
+            // set the owning side to null (unless already changed)
+            if ($motParty->getMot() === $this) {
+                $motParty->setMot(null);
+            }
+        }
 
         return $this;
     }

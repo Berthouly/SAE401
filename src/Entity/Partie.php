@@ -2,10 +2,16 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PartieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: PartieRepository::class)]
+#[ApiResource]
+
 class Partie
 {
     #[ORM\Id]
@@ -13,61 +19,81 @@ class Partie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nb_joueur = null;
+    #[ORM\ManyToOne()]
+    #[MaxDepth(1)]
+    private ?User $joueur1 = null;
+
+    #[ORM\ManyToOne]
+    #[MaxDepth(1)]
+    private ?User $joueur2 = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $partie_etat = null;
+    private ?string $etatPartie = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $type_partie = null;
+    #[ORM\ManyToOne]
+    #[MaxDepth(1)]
+    private ?User $tourJoueur = null;
 
     #[ORM\Column(length: 255)]
     private ?string $victoire = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $defaite = null;
+    #[ORM\OneToMany(mappedBy: 'partie', targetEntity: MotPartie::class)]
+    private Collection $motParties;
 
-    #[ORM\Column(length: 255)]
-    private ?string $tour_joueur = null;
+    public function __construct()
+    {
+        $this->motParties = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNbJoueur(): ?string
+    public function getJoueur1(): ?User
     {
-        return $this->nb_joueur;
+        return $this->joueur1;
     }
 
-    public function setNbJoueur(string $nb_joueur): self
+    public function setJoueur1(?User $joueur1): self
     {
-        $this->nb_joueur = $nb_joueur;
+        $this->joueur1 = $joueur1;
 
         return $this;
     }
 
-    public function getPartieEtat(): ?string
+    public function getJoueur2(): ?User
     {
-        return $this->partie_etat;
+        return $this->joueur2;
     }
 
-    public function setPartieEtat(string $partie_etat): self
+    public function setJoueur2(?User $joueur2): self
     {
-        $this->partie_etat = $partie_etat;
+        $this->joueur2 = $joueur2;
 
         return $this;
     }
 
-    public function getTypePartie(): ?string
+    public function getEtatPartie(): ?string
     {
-        return $this->type_partie;
+        return $this->etatPartie;
     }
 
-    public function setTypePartie(string $type_partie): self
+    public function setEtatPartie(string $etatPartie): self
     {
-        $this->type_partie = $type_partie;
+        $this->etatPartie = $etatPartie;
+
+        return $this;
+    }
+
+    public function getTourJoueur(): ?User
+    {
+        return $this->tourJoueur;
+    }
+
+    public function setTourJoueur(?User $tourJoueur): self
+    {
+        $this->tourJoueur = $tourJoueur;
 
         return $this;
     }
@@ -77,33 +103,39 @@ class Partie
         return $this->victoire;
     }
 
-    public function setVictoire(string $victoire): self
+    public function setVistoire(string $victoire): self
     {
         $this->victoire = $victoire;
 
         return $this;
     }
 
-    public function getDefaite(): ?string
+    /**
+     * @return Collection<int, MotPartie>
+     */
+    public function getMotParties(): Collection
     {
-        return $this->defaite;
+        return $this->motParties;
     }
 
-    public function setDefaite(string $defaite): self
+    public function addMotParty(MotPartie $motParty): self
     {
-        $this->defaite = $defaite;
+        if (!$this->motParties->contains($motParty)) {
+            $this->motParties->add($motParty);
+            $motParty->setPartie($this);
+        }
 
         return $this;
     }
 
-    public function getTourJoueur(): ?string
+    public function removeMotParty(MotPartie $motParty): self
     {
-        return $this->tour_joueur;
-    }
-
-    public function setTourJoueur(string $tour_joueur): self
-    {
-        $this->tour_joueur = $tour_joueur;
+        if ($this->motParties->removeElement($motParty)) {
+            // set the owning side to null (unless already changed)
+            if ($motParty->getPartie() === $this) {
+                $motParty->setPartie(null);
+            }
+        }
 
         return $this;
     }
