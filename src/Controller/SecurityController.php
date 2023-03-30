@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
+    #[Route('/login', name:'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
@@ -30,10 +30,13 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
+    #[Route('/deconnexion', name:'app_logout')]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
@@ -104,8 +107,6 @@ class SecurityController extends AbstractController
         // On vérifie si on a ce token dans la base
         $user = $usersRepository->findOneByResetToken($token);
 
-        // On vérifie si l'utilisateur existe
-
         if($user){
             $form = $this->createForm(ResetPasswordFormType::class);
 
@@ -114,9 +115,6 @@ class SecurityController extends AbstractController
             if($form->isSubmitted() && $form->isValid()){
                 // On efface le token
                 $user->setResetToken('');
-
-
-// On enregistre le nouveau mot de passe en le hashant
                 $user->setPassword(
                     $passwordHasher->hashPassword(
                         $user,
@@ -130,12 +128,10 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('app_login');
             }
 
-            return $this->render('security/password_reset.html.twig', [
+            return $this->render('security/reset_password.html.twig', [
                 'passForm' => $form->createView()
             ]);
         }
-
-        // Si le token est invalide on redirige vers le login
         $this->addFlash('danger', 'Jeton invalide');
         return $this->redirectToRoute('app_login');
     }

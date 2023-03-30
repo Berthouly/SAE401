@@ -1,187 +1,109 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Code Names!{% endblock %}
 
 {% block body %}
     {% block content %}
-        <header class="header_accueil">
-            <h1 class="title_header">
-                Code Names Duo
-            </h1>
+        <section id="presentation">
+            <div id="element_presentation">
+                <h1><b>Code Names DUO</b></h1><br>
+                <h2><b>Un incontournable jeu coopératif de déduction.</b></h2>
+            </div>
+            <img src="{{ asset('img/spy.png') }}" alt="spy_img">
+        </section>
 
-            <a href="#" class="button_header">Jouer maintenant</a>
-            <div class="card_header">
-                <h1 class="title_card">
-                    Comment jouer ?
-                </h1>
-                <p class="text_card_header">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere sit perspiciatis, earum dolorum fugiat vero praesentium ab, voluptates, voluptate aperiam quod tempora officia ad quaerat quis quisquam laboriosam non nulla?
+
+        <section class="section_rules" id="section_rules">
+            <img src="{{ asset('img/regle.png') }}" alt="regle_img"class="img_rules">
+            <div class="text_rules">
+                <h2>Règles:</h2><br>
+                <p>
+                    Code names Duo est un jeu coopératif pour 2 joueurs (ou plus) dans lequel vous devez retrouver tous vos Noms de Code avant la fin du temps imparti. Pour cela, vous devez, tour à tour, deviner ou faire deviner vos Noms de Code en donnant le meilleur indice possible.
+                </p>
+            </div>
+        </section>
+
+        <h1 class="jeu_title" id="section_show_card"><b>Interface Jeu</b></h1>
+        <section class="section_show_card" >
+
+            <img src="{{ asset('img/card_name.png') }}" alt="card_name_img">
+            <div class="carte_nom">
+                <h2><b>Cartes Nom de Code</b></h2><br><br>
+                <p>Les cartes Nom de Code correspondent
+                    aux mots que vous devez deviner ou
+                    faire deviner à votre partenaire durant la
+                    partie.
+                    Ce sont toutes les tuiles présentent sur le plateau durant la partie.
                 </p>
             </div>
 
-        </header>
-
-        <section class="section_rules">
-            <h1 class="title_rules">
-                Règles:
-            </h1>
-
-            <p class="text_rules">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere iusto obcaecati deleniti sit odio optio excepturi voluptatum consectetur, esse tenetur porro vitae doloribus mollitia exercitationem animi? Quae dolore iste architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aut esse unde veniam tenetur et obcaecati at enim voluptas facere beatae libero fugit perspiciatis itaque aspernatur. Perferendis ab consequuntur dolore! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi temporibus deleniti dolorum ratione cupiditate veritatis ab voluptatibus eum cum, nam quisquam maiores, asperiores illo hic, veniam ut dolorem! Rem, itaque.
-            </p>
-        </section>
-
-
-        <section class="section_show_card">
-            <div class="container_card">
-                <div class="picture_card"></div>
-                <p class="card_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis recusandae officia fugit quidem, eius voluptate incidunt necessitatibus nihil? Ullam vel fuga nobis nam maxime minima repellat quaerat quos necessitatibus sapiente. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque modi animi architecto odit inventore laboriosam, explicabo quidem ipsum culpa quaerat, sequi harum, dolor laborum minima enim! Assumenda neque officiis aperiam!</p>
+            <div id="tuiles">
+                <h3><b>9 Tuiles vertes</b></h3><br>
+                <p>Les tuiles Identité représentent les Noms de Code que vous devez trouver pendant la partie. Dès que le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit bien d’un des 9 Noms de Code verts du joueur qui fait deviner, la tuile deviendra verte pour indiquer que ce Nom de Code a été trouvé.</p>
+                <h3><b>3 Tuiles noires</b></h3><br>
+                <p>La tuile Assassin représente la fin de la partie. Si le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit d’un Assassin pour le joueur qui fait deviner, la tuile devient noir et vous perdez la partie.</p><br>
+                <h3><b>13 Tuiles neutres</b></h3><br>
+                <p>Les tuiles Neutre ne représentent aucun danger dans la partie mais attention ! Car elles vous font perdre des jetons Temps inutilement.</p>
             </div>
-
-            <div class="container_card">
-                <div class="picture_card"></div>
-                <p class="card_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis recusandae officia fugit quidem, eius voluptate incidunt necessitatibus nihil? Ullam vel fuga nobis nam maxime minima repellat quaerat quos necessitatibus sapiente. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque modi animi architecto odit inventore laboriosam, explicabo quidem ipsum culpa quaerat, sequi harum, dolor laborum minima enim! Assumenda neque officiis aperiam!</p>
-            </div>
-
-            <div class="container_card">
-                <div class="picture_card"></div>
-                <p class="card_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis recusandae officia fugit quidem, eius voluptate incidunt necessitatibus nihil? Ullam vel fuga nobis nam maxime minima repellat quaerat quos necessitatibus sapiente. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque modi animi architecto odit inventore laboriosam, explicabo quidem ipsum culpa quaerat, sequi harum, dolor laborum minima enim! Assumenda neque officiis aperiam!</p>
-            </div>
-
-            <div class="container_card">
-                <div class="picture_card"></div>
-                <p class="card_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis recusandae officia fugit quidem, eius voluptate incidunt necessitatibus nihil? Ullam vel fuga nobis nam maxime minima repellat quaerat quos necessitatibus sapiente. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque modi animi architecto odit inventore laboriosam, explicabo quidem ipsum culpa quaerat, sequi harum, dolor laborum minima enim! Assumenda neque officiis aperiam!</p>
+            <div id="indice">
+                <h1 class="jeu_title">Indices</h1>
+                <img src="{{ asset('img/indice.png') }}" alt="indice_img" id="img_indice">
+                <p class="text_indice">
+                    Pour indiquer à votre partenaire quelle tuile sélectionner,
+                    vous devez lui donner un indice sur le/les Noms de Code accompagné d’un chiffre.
+                    Le but étant de faire deviner un maximum de mots pour gagner du temps et remporter la partie.
+                </p>
             </div>
         </section>
 
+        <section class="section_deroule" id="section_deroule">
+            <div class="text_deroule">
+                <h1>Déroulement</h1><br>
+                <p>
+                    1. Donner un indice :<br>
+                    Pour faire deviner un ou plusieurs Noms de Code à votre partenaire, vous lui donnez un indice, qui doit être composé d’un mot accompagné d’un chiffre. Ce dernier indique à votre partenaire le nombre de Noms de Code en rapport avec ce mot. Il est intéressant de chercher un indice pouvant se rapporter à plusieurs Noms de Code afin d’en faire deviner un maximum au même tour. <br><br>
 
+                    Le premier indice Votre partenaire ou vous-même pouvez donner le premier indice. Imaginons que vous trouvez un bon indice et que votre partenaire est toujours en pleine réflexion, vous pouvez alors proposer de donner le Premier indice. Vous donnez alors un mot et un chiffre. Maintenant, votre partenaire essaye de deviner à quels Noms de Code vous pensez.
+                    itaque.
+                </p>
+            </div>
+            <img src="{{ asset('img/loupe.png') }}" alt="loupe_img" id="img_deroulement">
+        </section>
 
-        <section id="testimonial_area" class="section_padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="testmonial_slider_area text-center owl-carousel">
-                            <div class="box-area">
-                                <div class="img-area">
-                                    <img src="{{ asset('img/1.jpg') }}" alt="temoin">
-                                </div>
-                                <h5>Person's name</h5>
-                                <span>Designation Goes Here</span>
-                                <p class="content">
-                                    Lorem Ipsum is simply dummy text of the printing and
-                                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                    ever since
-                                </p>
-                                <h6 class="socials">
-                                    <i class="fa fa-instagram"></i>
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-youtube"></i>
-                                </h6>
-                            </div>
+        <section>
+            <div  id="plateau">
+                <img src="{{ asset('img/Plateau.png') }}" alt="plateau_img">
+                <div id="plateau_presente">
+                    <p>
+                        2. Désignez un ou plusieurs Noms de Code - Mots :<br>
+                        Lorsque votre partenaire donne un indice, vous devez découvrir la ou les cartes Nom de Code désignées par cet indice.  Lorsque vous pensez avoir deviné un Nom de Code, cliquez sur la tuile correspondante..<br>
 
-                            <div class="box-area">
-                                <div class="img-area">
-                                    <img src="{{ asset('img/2.jpg') }}" alt="">
-                                </div>
-                                <h5>Person's name</h5>
-                                <span>Designation Goes Here</span>
-                                <p class="content">
-                                    Lorem Ipsum is simply dummy text of the printing and
-                                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                    ever since
-                                </p>
-                                <h6 class="socials">
-                                    <i class="fa fa-instagram"></i>
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-youtube"></i>
-                                </h6>
-                            </div>
+                        ❱❱ Si la tuile que vous touchez correspond à un Nom de Code vert pour votre partenaire, bingo ! Celle-ci deviendra verte lors du clique. <br>
 
-                            <div class="box-area">
-                                <div class="img-area">
-                                    <img src="{{ asset('img/3.jpg') }}" alt="">
-                                </div>
-                                <h5>Person's name</h5>
-                                <span>Designation Goes Here</span>
-                                <p class="content">
-                                    Lorem Ipsum is simply dummy text of the printing and
-                                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                    ever since
-                                </p>
-                                <h6 class="socials">
-                                    <i class="fa fa-instagram"></i>
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-youtube"></i>
-                                </h6>
-                            </div>
+                        ❱❱ Si la carte que vous touchez correspond à un Nom de Code noir pour votre partenaire, c’est raté. La tuile deviendra noire et vous perdez la partie. Le jeu se termine immédiatement.<br>
 
-                            <div class="box-area">
-                                <div class="img-area">
-                                    <img src="{{ asset('img/4.jpg') }}" alt="">
-                                </div>
-                                <h5>Person's name</h5>
-                                <span>Designation Goes Here</span>
-                                <p class="content">
-                                    Lorem Ipsum is simply dummy text of the printing and
-                                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                    ever since
-                                </p>
-                                <h6 class="socials">
-                                    <i class="fa fa-instagram"></i>
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-youtube"></i>
-                                </h6>
-                            </div>
-
-                            <div class="box-area">
-                                <div class="img-area">
-                                    <img src="{{ asset('img/5.jpg') }}" alt="">
-                                </div>
-                                <h5>Person's name</h5>
-                                <span>Designation Goes Here</span>
-                                <p class="content">
-                                    Lorem Ipsum is simply dummy text of the printing and
-                                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                    ever since
-                                </p>
-                                <h6 class="socials">
-                                    <i class="fa fa-instagram"></i>
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-youtube"></i>
-                                </h6>
-                            </div>
-
-                            <div class="box-area">
-                                <div class="img-area">
-                                    <img src="{{ asset('img/6.jpg') }}" alt="">
-                                </div>
-                                <h5>Person's name</h5>
-                                <span>Designation Goes Here</span>
-                                <p class="content">
-                                    Lorem Ipsum is simply dummy text of the printing and
-                                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                    ever since
-                                </p>
-                                <h6 class="socials">
-                                    <i class="fa fa-instagram"></i>
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-youtube"></i>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
+                        ❱❱ Si la carte que vous touchez correspond à un Nom de Code beige pour votre partenaire, vous perdez du temps. Un jeton Temps sera alors utilisé.
+                    </p>
                 </div>
             </div>
+            <div id="pistolet">
+                <div id="pistolet_presente">
+                    <p>
+                        <b>Fin du tour</b> <br><br>
+                        Chaque tour se compose d’exactement un indice et au moins une carte Nom de Code touchée. Imaginons que vous n'ayez pas rencontré d’Assassin, le tour peut se terminer de deux manières différentes.<br><br>
+                        <b>Fin de la partie</b><br><br>
+                        <b>Victoire :</b><br>
+                        Si tous les Noms de Codes verts sont découverts, vous gagnez la partie.<br><br>
+                        <b>Assassin / Jeton Temps :</b><br>
+                        Si l'un des joueurs découvrent une Tuiles noir vous perdez la partie.
+                        Si les 9 jeton Temps sont utilisés, la partie prend fin et vous perdez la partie. 
+                    </p>
+                </div>
+                <img src="{{ asset('img/weapon.png') }}" alt="weapon_img" id="img_pistolet">
+            </div>
         </section>
 
-
-        <section class="section_contact">
+        <section class="section_contact" id="section_contact">
             <div class="box">
                 <div class="form">
                     <h2>Contact</h2>
@@ -202,50 +124,29 @@
                         <i></i>
                     </div>
 
-                    <input type="submit" value="Envoyer" style=" border: none;
-            outline: none;
-            background: #ff5c5c;
-            padding: 10px;
-            width: 100px;
-            border-radius: 8px;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;">
+                    <input type="submit" value="Envoyer" id="contact_button">
                 </div>
             </div>
             </form>
         </section>
+        <section id="section_footer">
+            <h1 class="name_footer">Code Names</h1>
+            <a href="#" class="mentions">Mentions légals</a>
+        </section>
 
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
         <script>
-            $(".testmonial_slider_area").owlCarousel({
-                autoplay: true,
-                slideSpeed:1000,
-                items : 3,
-                loop: true,
-                nav:true,
-                navText:['<i class="fa fa-arrow-left"></i>','<i class="fa fa-arrow-right"></i>'],
-                margin: 30,
-                dots: true,
-                responsive:{
-                    320:{
-                        items:1
-                    },
-                    767:{
-                        items:2
-                    },
-                    600:{
-                        items:2
-                    },
-                    1000:{
-                        items:3
-                    }
-                }
 
-            });
+
+            const scrollNav = () =>{
+                const nav = document.getElementById('nav')
+
+                this.scrollY >= 50 ? nav.classList.add('bg-nav')
+                    : nav.classList.remove('bg-nav')
+            }
+            window.addEventListener('scroll', scrollNav)
         </script>
+
         {% endblock %}
 {% endblock %}

@@ -5,6 +5,20 @@
     font-size: 2rem;
 }
 
+form a {
+    text-decoration: none;
+    outline: none;
+    color: black;
+    font-family: sans-serif;
+    font-size: 1rem;
+}
+
+form a:hover{
+    font-size: 1.05rem;
+    color:  rgb(37, 37, 37);
+    transition: 0.4s;
+}
+
 input[type=text], select, input[type=password], input[type=email] {
     width: 100%;
     padding: 1rem;
@@ -17,7 +31,7 @@ input[type=text], select, input[type=password], input[type=email] {
 
 input[type=submit], .inscription_button {
     width: 100%;
-    background-color: #4F4F4F;
+    background-color: rgb(37, 37, 37);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -45,7 +59,7 @@ input[type=submit], .inscription_button {
 .inscription:hover{
     border: none;
     transition: 0.3s;
-    background-color: #4F4F4F;
+    background-color: rgb(37, 37, 37);
     color: #fff;
 }
 
