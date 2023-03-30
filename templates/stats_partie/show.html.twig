@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StatsPartie{% endblock %}
+
+{% block body %}
+    <h1>StatsPartie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stats_partie.id }}</td>
+            </tr>
+            <tr>
+                <th>Partie_joue</th>
+                <td>{{ stats_partie.partieJoue }}</td>
+            </tr>
+            <tr>
+                <th>Partie_gagne</th>
+                <td>{{ stats_partie.partieGagne ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_stats_partie_index') }}">back to list</a>
+
+    <a href="{{ path('app_stats_partie_edit', {'id': stats_partie.id}) }}">edit</a>
+
+    {{ include('stats_partie/_delete_form.html.twig') }}
+{% endblock %}

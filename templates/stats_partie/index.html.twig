@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StatsPartie index{% endblock %}
+
+{% block body %}
+    <h1>StatsPartie index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Partie_joue</th>
+                <th>Partie_gagne</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stats_partie in stats_parties %}
+            <tr>
+                <td>{{ stats_partie.id }}</td>
+                <td>{{ stats_partie.partieJoue }}</td>
+                <td>{{ stats_partie.partieGagne ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_stats_partie_show', {'id': stats_partie.id}) }}">show</a>
+                    <a href="{{ path('app_stats_partie_edit', {'id': stats_partie.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_stats_partie_new') }}">Create new</a>
+{% endblock %}

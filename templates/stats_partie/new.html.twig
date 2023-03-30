@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New StatsPartie{% endblock %}
+
+{% block body %}
+    <h1>Create new StatsPartie</h1>
+
+    {{ include('stats_partie/_form.html.twig') }}
+
+    <a href="{{ path('app_stats_partie_index') }}">back to list</a>
+{% endblock %}

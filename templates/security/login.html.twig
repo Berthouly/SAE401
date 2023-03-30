@@ -28,15 +28,17 @@
         <form method="post">
 
 
-            <input type="text" value="{{ last_username }}" id="inputEmail" name="email" placeholder="jondoe@gmail.com" autocomplete="email" required autofocus>
+            <input type="email" value="{{ last_username }}" id="inputEmail" name="email" placeholder="jondoe@gmail.com" autocomplete="email" required autofocus>
 
             <div class="login_box">
-                <input type="password" autocomplete="current-password" name="passw" placeholder="Mot de passe" required id="input-pass">
+                <input type="password" autocomplete="current-password" name="password" placeholder="Mot de passe" required id="inputPassword">
                 <i class="ri-eye-off-fill login_eye" id="input-icon"></i>
             </div>
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
             >
+
+             <a href="{{ path('forgotten_password') }}">Mot de passe oublié ?</a>
 
             <div class="bouton_connexion">
                 <input type="submit" value="Se connecter">

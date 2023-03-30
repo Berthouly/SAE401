@@ -2304,20 +2304,20 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v6.2.9",
+            "version": "v6.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "dcfac94d6bdcf95c126e8ccac2104917c7c8f135"
+                "reference": "2f886f4b31f23c76496901acaedfedb6936ba61f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/dcfac94d6bdcf95c126e8ccac2104917c7c8f135",
-                "reference": "dcfac94d6bdcf95c126e8ccac2104917c7c8f135",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/2f886f4b31f23c76496901acaedfedb6936ba61f",
+                "reference": "2f886f4b31f23c76496901acaedfedb6936ba61f",
                 "shasum": ""
             },
             "require": {
-                "doctrine/annotations": "^1.0",
+                "doctrine/annotations": "^1.0|^2.0",
                 "php": ">=7.2.5",
                 "symfony/config": "^4.4|^5.0|^6.0",
                 "symfony/dependency-injection": "^4.4|^5.0|^6.0",
@@ -2375,11 +2375,10 @@
                 "controllers"
             ],
             "support": {
-                "issues": "https://github.com/sensiolabs/SensioFrameworkExtraBundle/issues",
-                "source": "https://github.com/sensiolabs/SensioFrameworkExtraBundle/tree/v6.2.9"
+                "source": "https://github.com/sensiolabs/SensioFrameworkExtraBundle/tree/v6.2.10"
             },
             "abandoned": "Symfony",
-            "time": "2022-11-01T17:17:13+00:00"
+            "time": "2023-02-24T14:57:12+00:00"
         },
         {
             "name": "symfony/asset",
@@ -4078,16 +4077,16 @@
         },
         {
             "name": "symfony/mailer",
-            "version": "v6.2.5",
+            "version": "v6.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer.git",
-                "reference": "29729ac0b4e5113f24c39c46746bd6afb79e0aaa"
+                "reference": "e4f84c633b72ec70efc50b8016871c3bc43e691e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer/zipball/29729ac0b4e5113f24c39c46746bd6afb79e0aaa",
-                "reference": "29729ac0b4e5113f24c39c46746bd6afb79e0aaa",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/e4f84c633b72ec70efc50b8016871c3bc43e691e",
+                "reference": "e4f84c633b72ec70efc50b8016871c3bc43e691e",
                 "shasum": ""
             },
             "require": {
@@ -4107,7 +4106,7 @@
             },
             "require-dev": {
                 "symfony/console": "^5.4|^6.0",
-                "symfony/http-client-contracts": "^1.1|^2|^3",
+                "symfony/http-client": "^5.4|^6.0",
                 "symfony/messenger": "^6.2",
                 "symfony/twig-bridge": "^6.2"
             },
@@ -4137,7 +4136,7 @@
             "description": "Helps sending emails",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailer/tree/v6.2.5"
+                "source": "https://github.com/symfony/mailer/tree/v6.2.7"
             },
             "funding": [
                 {
@@ -4153,7 +4152,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-10T18:53:53+00:00"
+            "time": "2023-02-21T10:35:38+00:00"
         },
         {
             "name": "symfony/mime",
@@ -6105,16 +6104,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v6.2.5",
+            "version": "v6.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "0ebfbe384790e61147e3d7f4aa0afbd6190198c4"
+                "reference": "4b3bd0a9545bdf7ebc84f0a494c05219010bb403"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/0ebfbe384790e61147e3d7f4aa0afbd6190198c4",
-                "reference": "0ebfbe384790e61147e3d7f4aa0afbd6190198c4",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/4b3bd0a9545bdf7ebc84f0a494c05219010bb403",
+                "reference": "4b3bd0a9545bdf7ebc84f0a494c05219010bb403",
                 "shasum": ""
             },
             "require": {
@@ -6193,7 +6192,7 @@
             "description": "Provides tools to validate values",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/validator/tree/v6.2.5"
+                "source": "https://github.com/symfony/validator/tree/v6.2.7"
             },
             "funding": [
                 {
@@ -6209,7 +6208,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-20T17:45:48+00:00"
+            "time": "2023-02-24T10:42:00+00:00"
         },
         {
             "name": "symfony/var-dumper",

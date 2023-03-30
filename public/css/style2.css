@@ -5,7 +5,7 @@
     font-size: 2rem;
 }
 
-input[type=text], select, input[type=password] {
+input[type=text], select, input[type=password], input[type=email] {
     width: 100%;
     padding: 1rem;
     margin: 8px 0;

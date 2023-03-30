@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordC
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class LoginAuthentificatorAuthenticator extends AbstractLoginFormAuthenticator
+class LoginAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
@@ -47,8 +47,8 @@ class LoginAuthentificatorAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
         return new RedirectResponse($this->urlGenerator->generate('app_accueil'));
+        # throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

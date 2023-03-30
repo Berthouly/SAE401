@@ -33,12 +33,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private $resetToken;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+
+    #[ORM\OneToMany(mappedBy: 'joueur_id', targetEntity: StatsPartie::class)]
+    private Collection $statsParties;
+
+    #[ORM\OneToMany(mappedBy: 'joueur', targetEntity: JsonPartie::class)]
+    private Collection $jsonParties;
 
     public function __construct()
     {
         $this->parties = new ArrayCollection();
+        $this->statsParties = new ArrayCollection();
+        $this->jsonParties = new ArrayCollection();
     }
 
 
@@ -103,6 +117,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
     /**
      * @see UserInterface
      */
@@ -110,6 +136,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -120,6 +158,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StatsPartie>
+     */
+    public function getStatsParties(): Collection
+    {
+        return $this->statsParties;
+    }
+
+    public function addStatsParty(StatsPartie $statsParty): self
+    {
+        if (!$this->statsParties->contains($statsParty)) {
+            $this->statsParties->add($statsParty);
+            $statsParty->setJoueurId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatsParty(StatsPartie $statsParty): self
+    {
+        if ($this->statsParties->removeElement($statsParty)) {
+            // set the owning side to null (unless already changed)
+            if ($statsParty->getJoueurId() === $this) {
+                $statsParty->setJoueurId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, JsonPartie>
+     */
+    public function getJsonParties(): Collection
+    {
+        return $this->jsonParties;
+    }
+
+    public function addJsonParty(JsonPartie $jsonParty): self
+    {
+        if (!$this->jsonParties->contains($jsonParty)) {
+            $this->jsonParties->add($jsonParty);
+            $jsonParty->setJoueur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJsonParty(JsonPartie $jsonParty): self
+    {
+        if ($this->jsonParties->removeElement($jsonParty)) {
+            // set the owning side to null (unless already changed)
+            if ($jsonParty->getJoueur() === $this) {
+                $jsonParty->setJoueur(null);
+            }
+        }
 
         return $this;
     }
