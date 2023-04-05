@@ -33,11 +33,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(type: 'string', length: 100)]
-    private $resetToken;
-
-    #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -117,17 +112,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getResetToken(): ?string
-    {
-        return $this->resetToken;
-    }
-
-    public function setResetToken(?string $resetToken): self
-    {
-        $this->resetToken = $resetToken;
-
-        return $this;
-    }
 
     /**
      * @see UserInterface
@@ -138,17 +122,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(bool $isVerified): self
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
-    }
 
     public function getName(): ?string
     {

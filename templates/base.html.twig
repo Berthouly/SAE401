@@ -17,7 +17,7 @@
         <ul class="items">
             <li class="item"><a href="{{ path('app_accueil') }}" class="link">Accueil</a></li>
             {% if app.user %}
-            <li class="item"><a href="{{ path('app_user_index') }}" class="link">Profil</a></li>
+            <li class="item"><a href="{{ path('app_user_index', {'id': user.id}) }}" class="link">Profil</a></li>
             <li class="item"><a href="{{ path('app_logout') }}" class="link">Deconnexion</a></li>
             {% else %}
             <li class="item"><a href="{{ path('app_login') }}" class="link">Connexion</a></li>
