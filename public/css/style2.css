@@ -1,3 +1,17 @@
+body{
+    font-family: sans-serif;
+}
+
+.a_logout{
+    color: #2CD93E;
+    text-decoration: none !important;
+}
+
+.a_logout:hover{
+    color:rgb(37, 37, 37);
+    font-size: 1.05rem;
+    transition: 0.4s;
+}
 
 .title_connexion{
     font-weight: bold;
@@ -9,13 +23,12 @@ form a {
     text-decoration: none;
     outline: none;
     color: black;
-    font-family: sans-serif;
     font-size: 1rem;
 }
 
 form a:hover{
     font-size: 1.05rem;
-    color:  rgb(37, 37, 37);
+    color:  #2CD93E;
     transition: 0.4s;
 }
 
@@ -58,13 +71,14 @@ input[type=submit], .inscription_button {
 
 .inscription:hover{
     border: none;
-    transition: 0.3s;
+    transition: 0.4s;
     background-color: rgb(37, 37, 37);
     color: #fff;
 }
 
 input[type=submit]:hover {
-    background-color: #7e7e7e;
+    background-color: #2CD93E;
+    transition: 0.4s;
 }
 
 .container_connexion {
@@ -102,6 +116,11 @@ form{
     margin: auto 0;
     font-size: 1.25rem;
     cursor: pointer;
+}
+
+.login_eye:hover{
+    color: #2CD93E;
+    transition: 0.4s;
 }
 
 .login_box{

@@ -25,7 +25,6 @@ img {
 
 ::-webkit-scrollbar-thumb {
     background-color: #262626;
-    border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
