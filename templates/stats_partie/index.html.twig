@@ -66,17 +66,16 @@
 
     <div class="menu-bar">
         <div class="menu">
-
             <ul class="menu-links">
                 <li class="nav-links">
-                    <a href="#">
+                    <a href="{{ path('app_user_index' , {'id': user.id}) }}">
                         <i class="bx bx-user-circle icon"></i>
                         <span class="text nav-text">Profil</span>
                     </a>
                 </li>
 
                 <li class="nav-links">
-                    <a href="#">
+                    <a href="{{ path('app_stats_partie_index') }}">
                         <i class="bx bx-stats icon"></i>
                         <span class="text nav-text">Stats</span>
                     </a>
@@ -94,7 +93,13 @@
 
         <div class="bottom-content">
             <li class="">
-                <a href="#">
+                <a href="{{ path('app_accueil') }}">
+                    <i class="bx bx-home icon"></i>
+                    <span class="text nav-text">Accueil</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="{{ path('app_logout') }}">
                     <i class="bx bx-log-out icon"></i>
                     <span class="text nav-text">Logout</span>
                 </a>
@@ -113,16 +118,23 @@
             <img src="{{ asset('img/avatar.png') }}" alt="avatar" class="avatar">
             <!--<i class="bx bx-edit bx-edit"></i>-->
         </div>
-
+        {% for stats_partie in stats_parties %}
         <div class="card_profil">
-            <p class="number_card">8</p>
+            <p class="number_card">{{ stats_partie.partieJoue }}</p>
             <p class="name_card">Parties jouées</p>
         </div>
         <div class="card_profil">
-            <p class="number_card">5</p>
+            <p class="number_card">{{ stats_partie.partieGagne }}</p>
             <p class="name_card">Parties gagnées</p>
         </div>
     </div>
+    {% else %}
+
+    <div class="card_profil">
+        <p class="number_card ">no records found</p>
+    </div>
+
+    {% endfor %}
 
 </section>
     <script>

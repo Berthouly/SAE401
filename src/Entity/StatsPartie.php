@@ -17,7 +17,7 @@ class StatsPartie
     private ?int $partie_joue = null;
 
     #[ORM\Column]
-    private ?int $nb_partie_gagne = null;
+    private ?int $partie_gagne = null;
 
     #[ORM\ManyToOne(inversedBy: 'statsParties')]
     private ?User $joueur_id = null;
@@ -39,14 +39,14 @@ class StatsPartie
         return $this;
     }
 
-    public function getNb_PartieGagne(): ?int
+    public function getPartieGagne(): ?int
     {
-        return $this->nb_partie_gagne;
+        return $this->partie_gagne;
     }
 
-    public function setPartieGagne(int $nb_partie_gagne): self
+    public function setPartieGagne(int $partie_gagne): self
     {
-        $this->nb_partie_gagne = $nb_partie_gagne;
+        $this->partie_gagne = $partie_gagne;
 
         return $this;
     }

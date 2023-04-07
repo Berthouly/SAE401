@@ -16,7 +16,12 @@ class JsonPartieController extends AbstractController
     #[Route('/', name: 'app_json_partie_index', methods: ['GET'])]
     public function index(JsonPartieRepository $jsonPartieRepository): Response
     {
+
+        $user = $this->getUser(); // Obtenez l'utilisateur courant
+
+
         return $this->render('json_partie/index.html.twig', [
+            'user' => $user,
             'json_parties' => $jsonPartieRepository->findAll(),
         ]);
     }

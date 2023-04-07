@@ -16,7 +16,12 @@ class StatsPartieController extends AbstractController
     #[Route('/', name: 'app_stats_partie_index', methods: ['GET'])]
     public function index(StatsPartieRepository $statsPartieRepository): Response
     {
+
+        $user = $this->getUser(); // Obtenez l'utilisateur courant
+
+
         return $this->render('stats_partie/index.html.twig', [
+            'user' => $user,
             'stats_parties' => $statsPartieRepository->findAll(),
         ]);
     }

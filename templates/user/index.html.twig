@@ -33,14 +33,14 @@
 
             <ul class="menu-links">
                 <li class="nav-links">
-                    <a href="#">
+                    <a href="{{ path('app_user_index', {'id': user.id}) }}">
                         <i class="bx bx-user-circle icon"></i>
                         <span class="text nav-text">Profil</span>
                     </a>
                 </li>
 
                 <li class="nav-links">
-                    <a href="#">
+                    <a href="{{ path('app_stats_partie_index') }}">
                         <i class="bx bx-stats icon"></i>
                         <span class="text nav-text">Stats</span>
                     </a>
@@ -57,6 +57,12 @@
         </div>
 
         <div class="bottom-content">
+            <li class="">
+                <a href="{{ path('app_accueil') }}">
+                    <i class="bx bx-home icon"></i>
+                    <span class="text nav-text">Accueil</span>
+                </a>
+            </li>
             <li class="">
                 <a href="{{ path('app_logout') }}">
                     <i class="bx bx-log-out icon"></i>
@@ -108,36 +114,10 @@
 
         <div class="changer_mdp">
             <h1 class="title_connexion">Changer de Mot de passe </h1>
-            <form action="#" class="form_mdp">
-                <div class="input_icon">
-                    <div class="login_box">
-                        <p class="text_mdp">Mot de passe actuel</p>
-                        <input type="password" id="mdp_act" name="mdp_act" placeholder=".........">
-                        <i class="bx bx-hide login_eye" id="input-icon"></i>
-                    </div>
-                </div>
-
-                <div class="input_icon">
-                    <div class="login_box">
-                        <p class="text_mdp">Nouveau mot de passe</p>
-                        <input type="password" id="mdp_nv" name="mdp_nv" placeholder="..........">
-                        <i class="bx bx-hide login_eye" id="input-icon"></i>
-                    </div>
-                </div>
-
-                <div class="input_icon">
-                    <div class="login_box">
-                        <p class="text_mdp">Confirmer le nouveau mot de passe</p>
-                        <input type="password" id="mdp_conf" name="mdp_conf" placeholder=".........">
-                        <i class="bx bx-hide login_eye" id="input-icon"></i>
-                    </div>
-                </div>
-
 
                 <div class="bouton_connexion">
-                    <input type="submit" value="Mettre à jour" class="button_mdp">
+                   <a href="{{ path('app_forgot_password_request') }}" class="button_mdp">Modifier mot de passe</a>
                 </div>
-            </form>
 
         </div>
     </div>
