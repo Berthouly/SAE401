@@ -98,7 +98,7 @@ nav .button_nav{
 }
 
 nav .button_nav:hover{
-    border-radius: 0px;
+    border-radius: 0;
     background-color: #2CD93E;
     color: #eee !important;
     font-size: 1.7rem;
@@ -321,7 +321,7 @@ header{
 .inputbox span{
     position: absolute;
     left: 0;
-    padding: 20px 0px 10px;
+    padding: 20px 0 10px;
     font-size: 1em;
     color: #8f8f8f;
     pointer-events: none;
