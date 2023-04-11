@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Code Names {% endblock %}</title>
@@ -15,7 +15,7 @@
     <nav class="nav" id="nav">
         <h1 class="title_nav">Code Names</h1>
         <ul class="items">
-            <li class="item"><a href="{{ path('app_accueil') }}" class="link">Accueil</a></li>
+            <li class="item"><a href="{{ path('app_accueil', {'locale': locale}) }}" class="link">Accueil</a></li>
             {% if app.user %}
             <li class="item"><a href="{{ path('app_user_index', {'id': user.id}) }}" class="link">Profil</a></li>
             <li class="item"><a href="{{ path('app_logout') }}" class="link">Deconnexion</a></li>
