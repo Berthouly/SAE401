@@ -2,6 +2,10 @@ body{
     font-family: sans-serif;
 }
 
+label{
+    display: none !important;
+}
+
 .a_logout{
     color: #2CD93E;
     text-decoration: none !important;

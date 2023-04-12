@@ -17,35 +17,35 @@
 
     {% if app.user %}
         <div class="mb-3">
-            Retour à <a href="{{ path('app_accueil') }}" class="a_logout">L'accueil</a>
+            {{ 'Retour à'|trans }} <a href="{{ path('app_accueil') }}" class="a_logout">{{ 'L\'accueil'|trans }}</a>
         </div>
         <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="a_logout">Logout</a>
+            {{ 'Vous êtes déjà connecté en tant que'|trans }} {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="a_logout">{{ 'Deconnexion'|trans }}</a>
         </div>
     {% endif %}
 
 
 <section class="section_connexion">
     <div class="container_connexion">
-        <h1 class="title_connexion">Se connecter </h1>
+        <h1 class="title_connexion">{{ 'Se connecter'|trans}}</h1>
         <form method="post">
 
 
             <input type="email" value="{{ last_username }}" id="inputEmail" name="email" placeholder="jondoe@gmail.com" autocomplete="email" required autofocus>
 
             <div class="login_box">
-                <input type="password" autocomplete="current-password" name="password" placeholder="Mot de passe" required id="inputPassword">
+                <input type="password" autocomplete="current-password" name="password" placeholder="{{ 'Mot de passe'|trans }}" required id="inputPassword">
                 <i class="ri-eye-off-fill login_eye" id="input-icon"></i>
             </div>
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
             >
 
-            <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié</a>
+            <a href="{{ path('app_forgot_password_request', {'locale': locale}) }}">{{'Mot de passe oublié'|trans}} ?</a>
 
             <div class="bouton_connexion">
-                <input type="submit" value="Se connecter">
-                <a href="{{path('app_register')}}" class="inscription">S'inscrire</a>
+                <input type="submit" value="{{ 'Se connecter'|trans }}">
+                <a href="{{path('app_register', {'locale': locale})}}" class="inscription">{{ 'S\'inscrire'|trans }}</a>
             </div>
         </form>
     </div>

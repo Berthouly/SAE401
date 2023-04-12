@@ -1,16 +1,16 @@
 <head>
     <meta charset="UTF-8">
-    {% block title %}Reset your password{% endblock %}
+    {% block title %}{{ 'Réinitialiser votre mot de passe'|trans }}{% endblock %}
     <link href="{{ asset('css/style_reset_password.css') }}" rel="stylesheet"/>
 
 
 </head>
 
 {% block body %}
-    <h1>Reset your password</h1>
+    <h1>{{'Réinitialiser votre mot de passe'|trans}}</h1>
 
     {{ form_start(resetForm) }}
         {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
+        <button class="btn btn-primary">{{ 'Réinitialiser mot de passe'|trans }}</button>
     {{ form_end(resetForm) }}
 {% endblock %}

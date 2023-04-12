@@ -16,55 +16,48 @@
         <section class="section_rules" id="section_rules">
             <img src="{{ asset('img/regle.png') }}" alt="regle_img" class="img_rules">
             <div class="text_rules">
-                <h2>Règles:</h2><br>
+                <h2>{{ 'Règles'|trans }}:</h2><br>
                 <p>
-                    Code names Duo est un jeu coopératif pour 2 joueurs (ou plus) dans lequel vous devez retrouver tous vos Noms de Code avant la fin du temps imparti. Pour cela, vous devez, tour à tour, deviner ou faire deviner vos Noms de Code en donnant le meilleur indice possible.
+                    {{ 'Code names Duo est un jeu coopératif pour 2 joueurs (ou plus) dans lequel vous devez retrouver tous vos Noms de Code avant la fin du temps imparti. Pour cela, vous devez, tour à tour, deviner ou faire deviner vos Noms de Code en donnant le meilleur indice possible.'|trans }}
                 </p>
             </div>
         </section>
 
-        <h1 class="jeu_title" id="section_show_card"><b>Interface Jeu</b></h1>
+        <h1 class="jeu_title" id="section_show_card"><b>{{ 'Interface Jeu'|trans }}</b></h1>
         <section class="section_show_card" >
 
             <img src="{{ asset('img/card_name.png') }}" alt="card_name_img">
             <div class="carte_nom">
-                <h2><b>Cartes Nom de Code</b></h2><br><br>
-                <p>Les cartes Nom de Code correspondent
-                    aux mots que vous devez deviner ou
-                    faire deviner à votre partenaire durant la
-                    partie.
-                    Ce sont toutes les tuiles présentent sur le plateau durant la partie.
+               <h2><b>{{ 'Cartes Nom de Code'|trans }}</b></h2><br><br>
+                <p>{{ 'Les cartes Nom de Code correspondent aux mots que vous devez deviner ou faire deviner à votre partenaire durant la partie. Ce sont toutes les tuiles présentent sur le plateau durant la partie.'|trans }}
                 </p>
             </div>
 
             <div id="tuiles">
-                <h3><b>9 Tuiles vertes</b></h3><br>
-                <p>Les tuiles Identité représentent les Noms de Code que vous devez trouver pendant la partie. Dès que le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit bien d’un des 9 Noms de Code verts du joueur qui fait deviner, la tuile deviendra verte pour indiquer que ce Nom de Code a été trouvé.</p>
-                <h3><b>3 Tuiles noires</b></h3><br>
-                <p>La tuile Assassin représente la fin de la partie. Si le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit d’un Assassin pour le joueur qui fait deviner, la tuile devient noir et vous perdez la partie.</p><br>
-                <h3><b>13 Tuiles neutres</b></h3><br>
-                <p>Les tuiles Neutre ne représentent aucun danger dans la partie mais attention ! Car elles vous font perdre des jetons Temps inutilement.</p>
+                <h3><b>{{ '9 Tuiles vertes'|trans }}</b></h3><br>
+                <p>{{ 'Les tuiles Identité représentent les Noms de Code que vous devez trouver pendant la partie. Dès que le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit bien d’un des 9 Noms de Code verts du joueur qui fait deviner, la tuile deviendra verte pour indiquer que ce Nom de Code a été trouvé.'|trans }}</p>
+                <h3><b>{{ '3 Tuiles noires'|trans }}</b></h3><br>
+                <p>{{ 'La tuile Assassin représente la fin de la partie. Si le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit d’un Assassin pour le joueur qui fait deviner, la tuile devient noir et vous perdez la partie.'|trans }}</p><br>
+                <h3><b>{{ '13 Tuiles neutres'|trans }}</b></h3><br>
+                <p>{{ 'Les tuiles Neutre ne représentent aucun danger dans la partie mais attention ! Car elles vous font perdre des jetons Temps inutilement.'|trans }}</p>
             </div>
             <div id="indice">
-                <h1 class="jeu_title">Indices</h1>
+                <h1 class="jeu_title">{{ 'Indices'|trans }}</h1>
                 <img src="{{ asset('img/indice.png') }}" alt="indice_img" id="img_indice">
                 <p class="text_indice">
-                    Pour indiquer à votre partenaire quelle tuile sélectionner,
-                    vous devez lui donner un indice sur le/les Noms de Code accompagné d’un chiffre.
-                    Le but étant de faire deviner un maximum de mots pour gagner du temps et remporter la partie.
+                    {{ 'Pour indiquer à votre partenaire quelle tuile sélectionner, vous devez lui donner un indice sur le/les Noms de Code accompagné d’un chiffre. Le but étant de faire deviner un maximum de mots pour gagner du temps et remporter la partie.'|trans }}
                 </p>
             </div>
         </section>
 
         <section class="section_deroule" id="section_deroule">
             <div class="text_deroule">
-                <h1>Déroulement</h1><br>
+                <h1>{{ 'Déroulement'|trans }}</h1><br>
                 <p>
-                    1. Donner un indice :<br>
-                    Pour faire deviner un ou plusieurs Noms de Code à votre partenaire, vous lui donnez un indice, qui doit être composé d’un mot accompagné d’un chiffre. Ce dernier indique à votre partenaire le nombre de Noms de Code en rapport avec ce mot. Il est intéressant de chercher un indice pouvant se rapporter à plusieurs Noms de Code afin d’en faire deviner un maximum au même tour. <br><br>
+                    1. {{ 'Donner un indice'|trans }} :<br>
+                    {{ 'Pour faire deviner un ou plusieurs Noms de Code à votre partenaire, vous lui donnez un indice, qui doit être composé d’un mot accompagné d’un chiffre. Ce dernier indique à votre partenaire le nombre de Noms de Code en rapport avec ce mot. Il est intéressant de chercher un indice pouvant se rapporter à plusieurs Noms de Code afin d’en faire deviner un maximum au même tour.'|trans }} <br><br>
 
-                    Le premier indice Votre partenaire ou vous-même pouvez donner le premier indice. Imaginons que vous trouvez un bon indice et que votre partenaire est toujours en pleine réflexion, vous pouvez alors proposer de donner le Premier indice. Vous donnez alors un mot et un chiffre. Maintenant, votre partenaire essaye de deviner à quels Noms de Code vous pensez.
-                    itaque.
+                    {{ 'Le premier indice Votre partenaire ou vous-même pouvez donner le premier indice. Imaginons que vous trouvez un bon indice et que votre partenaire est toujours en pleine réflexion, vous pouvez alors proposer de donner le Premier indice. Vous donnez alors un mot et un chiffre. Maintenant, votre partenaire essaye de deviner à quels Noms de Code vous pensez.'|trans }}
                 </p>
             </div>
             <img src="{{ asset('img/loupe.png') }}" alt="loupe_img" id="img_deroulement">
@@ -75,28 +68,27 @@
                 <img src="{{ asset('img/Plateau.png') }}" alt="plateau_img">
                 <div id="plateau_presente">
                     <p>
-                        2. Désignez un ou plusieurs Noms de Code - Mots :<br>
-                        Lorsque votre partenaire donne un indice, vous devez découvrir la ou les cartes Nom de Code désignées par cet indice.  Lorsque vous pensez avoir deviné un Nom de Code, cliquez sur la tuile correspondante..<br>
+                        2. {{ 'Désignez un ou plusieurs Noms de Code - Mots'|trans }} :<br>
+                        {{ 'Lorsque votre partenaire donne un indice, vous devez découvrir la ou les cartes Nom de Code désignées par cet indice. Lorsque vous pensez avoir deviné un Nom de Code, cliquez sur la tuile correspondante.'|trans }}<br>
 
-                        ❱❱ Si la tuile que vous touchez correspond à un Nom de Code vert pour votre partenaire, bingo ! Celle-ci deviendra verte lors du clique. <br>
+                        ❱❱ {{ 'Si la tuile que vous touchez correspond à un Nom de Code vert pour votre partenaire, bingo ! Celle-ci deviendra verte lors du clique.'|trans }} <br>
 
-                        ❱❱ Si la carte que vous touchez correspond à un Nom de Code noir pour votre partenaire, c’est raté. La tuile deviendra noire et vous perdez la partie. Le jeu se termine immédiatement.<br>
+                        ❱❱ {{ 'Si la carte que vous touchez correspond à un Nom de Code noir pour votre partenaire, c’est raté. La tuile deviendra noire et vous perdez la partie. Le jeu se termine immédiatement.'|trans }}<br>
 
-                        ❱❱ Si la carte que vous touchez correspond à un Nom de Code beige pour votre partenaire, vous perdez du temps. Un jeton Temps sera alors utilisé.
+                        ❱❱ {{ 'Si la carte que vous touchez correspond à un Nom de Code beige pour votre partenaire, vous perdez du temps. Un jeton Temps sera alors utilisé.'|trans }}
                     </p>
                 </div>
             </div>
             <div id="pistolet">
                 <div id="pistolet_presente">
                     <p>
-                        <b>Fin du tour</b> <br><br>
-                        Chaque tour se compose d’exactement un indice et au moins une carte Nom de Code touchée. Imaginons que vous n'ayez pas rencontré d’Assassin, le tour peut se terminer de deux manières différentes.<br><br>
-                        <b>Fin de la partie</b><br><br>
-                        <b>Victoire :</b><br>
-                        Si tous les Noms de Codes verts sont découverts, vous gagnez la partie.<br><br>
-                        <b>Assassin / Jeton Temps :</b><br>
-                        Si l'un des joueurs découvrent une Tuiles noir vous perdez la partie.
-                        Si les 9 jeton Temps sont utilisés, la partie prend fin et vous perdez la partie. 
+                        <b>{{ 'Fin du tour'|trans }}r</b> <br><br>
+                        {{ 'Chaque tour se compose d’exactement un indice et au moins une carte Nom de Code touchée. Imaginons que vous n\'ayez pas rencontré d’Assassin, le tour peut se terminer de deux manières différentes.'|trans }}<br><br>
+                        <b>{{ 'Fin de la partie'|trans }}</b><br><br>
+                        <b>{{ 'Victoire'|trans }} :</b><br>
+                        {{ 'Si tous les Noms de Codes verts sont découverts, vous gagnez la partie.'|trans }}<br><br>
+                        <b>{{ 'Assassin - Jeton Temps '|trans }}:</b><br>
+                        {{ 'Si l\'un des joueurs découvrent une Tuiles noir vous perdez la partie. Si les 9 jeton Temps sont utilisés, la partie prend fin et vous perdez la partie.'|trans }}
                     </p>
                 </div>
                 <img src="{{ asset('img/weapon.png') }}" alt="weapon_img" id="img_pistolet">

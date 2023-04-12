@@ -12,6 +12,7 @@ class AccueilController extends AbstractController
     #[Route('/{_locale}/accueil', name: 'app_accueil',requirements: ['_loacle' => 'fr|en'], methods: ['GET'])]
     public function index(Request $request): Response
     {
+
         $user = $this->getUser(); // Obtenez l'utilisateur courant
         $locale = $request->getLocale();
         $request->setLocale('fr');

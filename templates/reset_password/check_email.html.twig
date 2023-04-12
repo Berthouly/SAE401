@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    {% block title %}Password Reset Email Sent{% endblock %}
+    {% block title %}{{ 'Courriel de réinitialisation du mot de passe envoyé'|trans }}{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('css/style_reset_password.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,9 +10,8 @@
 {% block body %}
     <div class="container_check_mail">
     <p class="text_check_mail">
-        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        {{ 'Si un compte correspondant à votre email existe, alors un email vient d’être envoyé qui contient un lien que vous pouvez utiliser pour réinitialiser votre mot de passe. Ce lien expirera dans'|trans}} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
     </p>
-    <p class="text_check_mail">If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+    <p class="text_check_mail">{{ 'Si vous ne recevez pas de courriel, veuillez vérifier votre dossier de pourriels ou'|trans}} <a href="{{ path('app_forgot_password_request') }}">{{ 'réessayer'|trans }}</a>.</p>
     </div>
 {% endblock %}

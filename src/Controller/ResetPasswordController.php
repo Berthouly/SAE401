@@ -34,9 +34,12 @@ class ResetPasswordController extends AbstractController
     /**
      * Display & process form to request a password reset.
      */
-    #[Route('', name: 'app_forgot_password_request')]
+    #[Route('/{_locale}/', name: 'app_forgot_password_request', requirements: ['_loacle' => 'fr|en'])]
     public function request(Request $request, MailerInterface $mailer, TranslatorInterface $translator): Response
     {
+        $locale = $request->getLocale();
+        $request->setLocale('fr');
+
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
 
@@ -49,6 +52,7 @@ class ResetPasswordController extends AbstractController
         }
 
         return $this->render('reset_password/request.html.twig', [
+            'locale' => $locale,
             'requestForm' => $form->createView(),
         ]);
     }
@@ -56,9 +60,13 @@ class ResetPasswordController extends AbstractController
     /**
      * Confirmation page after a user has requested a password reset.
      */
-    #[Route('/check-email', name: 'app_check_email')]
-    public function checkEmail(): Response
+    #[Route('/{_locale}/check-email', name: 'app_check_email', requirements: ['_loacle' => 'fr|en'])]
+    public function checkEmail(Request $request): Response
     {
+
+        $locale = $request->getLocale();
+        $request->setLocale('fr');
+
         // Generate a fake token if the user does not exist or someone hit this page directly.
         // This prevents exposing whether or not a user was found with the given email address or not
         if (null === ($resetToken = $this->getTokenObjectFromSession())) {
@@ -66,6 +74,7 @@ class ResetPasswordController extends AbstractController
         }
 
         return $this->render('reset_password/check_email.html.twig', [
+            'locale' => $locale,
             'resetToken' => $resetToken,
         ]);
     }
@@ -73,9 +82,12 @@ class ResetPasswordController extends AbstractController
     /**
      * Validates and process the reset URL that the user clicked in their email.
      */
-    #[Route('/reset/{token}', name: 'app_reset_password')]
+    #[Route('/{_locale}/reset/{token}', name: 'app_reset_password', requirements: ['_loacle' => 'fr|en'])]
     public function reset(Request $request, UserPasswordHasherInterface $passwordHasher, TranslatorInterface $translator, string $token = null): Response
     {
+        $locale = $request->getLocale();
+        $request->setLocale('fr');
+
         if ($token) {
             // We store the token in session and remove it from the URL, to avoid the URL being
             // loaded in a browser and potentially leaking the token to 3rd party JavaScript.
@@ -125,6 +137,7 @@ class ResetPasswordController extends AbstractController
         }
 
         return $this->render('reset_password/reset.html.twig', [
+            'locale' => $locale,
             'resetForm' => $form->createView(),
         ]);
     }
@@ -153,7 +166,7 @@ class ResetPasswordController extends AbstractController
             //     $translator->trans($e->getReason(), [], 'ResetPasswordBundle')
             // ));
 
-            return $this->redirectToRoute('app_check_email');
+            return $this->redirectToRoute('app_check_email', );
         }
 
         $email = (new TemplatedEmail())

@@ -41,7 +41,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title %}StatsPartie{% endblock %}
+    {% block title %}{{ 'StatsPartie'|trans }}{% endblock %}
     <link href="{{ asset('css/style_profil.css') }}" rel="stylesheet"/>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -56,7 +56,7 @@
                 </span>
 
             <div class="text logo-text">
-                <span class="name">Code Name</span>
+                <span class="name">Code Names</span>
                 <span class="profession">Duo</span>
             </div>
         </div>
@@ -85,7 +85,7 @@
                 <li class="nav-links">
                     <a href="#">
                         <i class="bx bx-game icon"></i>
-                        <span class="text nav-text">Salon</span>
+                        <span class="text nav-text">{{ 'Salon'|trans }}</span>
                     </a>
                 </li>
             </ul>
@@ -95,13 +95,13 @@
             <li class="">
                 <a href="{{ path('app_accueil') }}">
                     <i class="bx bx-home icon"></i>
-                    <span class="text nav-text">Accueil</span>
+                    <span class="text nav-text">{{ 'Accueil'|trans }}</span>
                 </a>
             </li>
             <li class="">
                 <a href="{{ path('app_logout') }}">
                     <i class="bx bx-log-out icon"></i>
-                    <span class="text nav-text">Logout</span>
+                    <span class="text nav-text">{{ 'Deconnexion'|trans }}</span>
                 </a>
             </li>
 
@@ -112,7 +112,7 @@
 
 
 <section class="home">
-    <div class="text">Code Name Duo</div>
+    <div class="text">Code Names Duo</div>
     <div class="profil">
         <div class="avatar_img">
             <img src="{{ asset('img/avatar.png') }}" alt="avatar" class="avatar">
@@ -121,11 +121,11 @@
         {% for stats_partie in stats_parties %}
         <div class="card_profil">
             <p class="number_card">{{ stats_partie.partieJoue }}</p>
-            <p class="name_card">Parties jouées</p>
+            <p class="name_card">{{ 'Parties jouées'|trans }}</p>
         </div>
         <div class="card_profil">
             <p class="number_card">{{ stats_partie.partieGagne }}</p>
-            <p class="name_card">Parties gagnées</p>
+            <p class="name_card">{{ 'Parties gagnées'|trans }}</p>
         </div>
     </div>
     {% else %}

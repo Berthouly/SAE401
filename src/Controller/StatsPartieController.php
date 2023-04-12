@@ -13,14 +13,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/stats/partie')]
 class StatsPartieController extends AbstractController
 {
-    #[Route('/', name: 'app_stats_partie_index', methods: ['GET'])]
-    public function index(StatsPartieRepository $statsPartieRepository): Response
+    #[Route('/{_locale}/', name: 'app_stats_partie_index', requirements: ['_loacle' => 'fr|en'], methods: ['GET'])]
+    public function index(StatsPartieRepository $statsPartieRepository, Request $request): Response
     {
+        $locale = $request->getLocale();
+        $request->setLocale('fr');
 
         $user = $this->getUser(); // Obtenez l'utilisateur courant
 
 
         return $this->render('stats_partie/index.html.twig', [
+            'locale' => $locale,
             'user' => $user,
             'stats_parties' => $statsPartieRepository->findAll(),
         ]);

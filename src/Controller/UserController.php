@@ -13,9 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/user')]
 class UserController extends AbstractController
 {
-    #[Route('/{id}/edit', name: 'app_user_index', methods: ['GET', 'POST'])]
+    #[Route('/{_locale}/{id}/edit', name: 'app_user_index', methods: ['GET', 'POST'], requirements: ['_locale' => 'fr|en'])]
     public function edit(Request $request, UserRepository $userRepository, User $user): Response
     {
+
+        $locale = $request->getLocale();
+        $request->setLocale('fr');
 
         $user = $this->getUser(); // Obtenez l'utilisateur courant
 
@@ -30,6 +33,7 @@ class UserController extends AbstractController
 
         }
         return $this->render('user/index.html.twig', [
+            'locale' => $locale,
             'user' => $user,
             'form' => $form->createView(),
         ]);

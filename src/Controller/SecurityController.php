@@ -4,15 +4,20 @@ namespace App\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route('/login', name:'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    #[Route('/{_locale}/login', name:'app_login', requirements: ['_loacle' => 'fr|en'])]
+    public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
+
+        $locale = $request->getLocale();
+        $request->setLocale('fr');
+
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
@@ -23,6 +28,7 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
+            'locale' => $locale,
             'last_username' => $lastUsername,
             'error' => $error
         ]);

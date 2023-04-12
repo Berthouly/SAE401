@@ -15,12 +15,12 @@
     <nav class="nav" id="nav">
         <h1 class="title_nav">Code Names</h1>
         <ul class="items">
-            <li class="item"><a href="{{ path('app_accueil', {'locale': locale}) }}" class="link">Accueil</a></li>
+            <li class="item"><a href="{{ path('app_accueil', {'locale': locale}) }}" class="link">{{ 'Accueil'|trans }}</a></li>
             {% if app.user %}
-            <li class="item"><a href="{{ path('app_user_index', {'id': user.id}) }}" class="link">Profil</a></li>
-            <li class="item"><a href="{{ path('app_logout') }}" class="link">Deconnexion</a></li>
+            <li class="item"><a href="{{ path('app_user_index', {'id': user.id},false, {'locale': locale}) }}" class="link">Profil</a></li>
+            <li class="item"><a href="{{ path('app_logout') }}" class="link">{{ 'Deconnexion'|trans }}</a></li>
             {% else %}
-            <li class="item"><a href="{{ path('app_login') }}" class="link">Connexion</a></li>
+            <li class="item"><a href="{{ path('app_login', {'locale': locale}) }}" class="link">{{ 'Connexion'|trans }}</a></li>
             {% endif %}
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown-language" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,7 +32,7 @@
                         </ul>
                 </li>
         </ul>
-        <a href="#" class="button_nav">JOUER</a>
+        <a href="#" class="button_nav">{{ 'JOUER'|trans }}</a>
 
     </nav>
 </header>
