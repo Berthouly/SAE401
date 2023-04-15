@@ -74,13 +74,12 @@ input[type=submit], .inscription_button {
 }
 
 .inscription:hover{
-    border: none;
     transition: 0.4s;
     background-color: rgb(37, 37, 37);
     color: #fff;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover, .inscription_button:hover {
     background-color: #2CD93E;
     transition: 0.4s;
 }
@@ -134,3 +133,4 @@ form{
 .login_box .login_input{
     padding-right: 36px;
 }
+

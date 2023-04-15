@@ -9,6 +9,8 @@
 
     <!--=============== CSS ===============-->
     <link href="{{ asset('css/style2.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('js/hide-pass-regis.js') }}"></script>
+
     <title>{% block title %}Code Names {% endblock %}</title>
 {% endblock %}
 {% block body %}
@@ -30,7 +32,7 @@
 
 
                 <div class="login_box">
-                    {{ form_row(registrationForm.plainPassword) }}
+                    {{ form_row(registrationForm.plainPassword, {'attr': {'id': 'inputPassword'}}) }}
                     <i class="ri-eye-off-fill login_eye" id="input-icon"></i>
                 </div>
 

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello JoinController!{% endblock %}
+
+{% block body %}
+    {{id}}
+    {% if partie is defined %}
+        <pre>{{ partie }}</pre>
+    {% endif %}
+
+{% endblock %}

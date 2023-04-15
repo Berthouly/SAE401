@@ -7,7 +7,8 @@
 
 <!--=============== CSS ===============-->
 <link href="{{ asset('css/style2.css') }}" rel="stylesheet"/>
-<title>{% block title %}Code Names {% endblock %}</title>
+    <script src="{{ asset('js/hide-pass.js') }}"></script>
+    <title>{% block title %}Code Names {% endblock %}</title>
 {% endblock %}
 {% block body %}
     {% block content %}
@@ -34,7 +35,7 @@
             <input type="email" value="{{ last_username }}" id="inputEmail" name="email" placeholder="jondoe@gmail.com" autocomplete="email" required autofocus>
 
             <div class="login_box">
-                <input type="password" autocomplete="current-password" name="password" placeholder="{{ 'Mot de passe'|trans }}" required id="inputPassword">
+                <input type="password" autocomplete="current-password" name="password" placeholder="{{ 'Mot de passe'|trans }}" required id="inputPassword" minlength="6">
                 <i class="ri-eye-off-fill login_eye" id="input-icon"></i>
             </div>
             <input type="hidden" name="_csrf_token"
@@ -49,6 +50,7 @@
             </div>
         </form>
     </div>
+
 
 </section>
 

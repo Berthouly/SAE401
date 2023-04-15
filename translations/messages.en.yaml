@@ -1,3 +1,4 @@
+#Profil
 "Accueil" : "Home"
 "Deconnexion" : "Logout"
 "Connexion" : "Login"
@@ -11,6 +12,9 @@
 "Sauvegarder les infos" : "Save info"
 "Changer de Mot de passe" : "Change your password"
 "Modifier mot de passe" : "Edit your password"
+
+#Login/Regigister
+
 "Retour à" : "Back to"
 "L'accueil" : "home"
 "Se connecter" : "Log in"
@@ -18,6 +22,9 @@
 "Mot de passe oublié" : "Forgot password"
 "S'inscrire" : "Register"
 "Vous êtes déjà connecté en tant que" : "You are logged in as"
+
+#Reset Password
+
 "Réinitialiser votre mot de passe" : "Reset your password"
 "Réinitialiser mot de passe" : "Reset password"
 "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe." : "Enter your email address and we will send you a link to reset your password."
@@ -39,6 +46,13 @@
 "Les champs du mot de passe doivent correspondre." : "The password fields must match."
 "Entrez votre email" : "Please enter your email"
 "Accepter les termes" : "Agree Terms"
+"L'adresse email" : "The email adress"
+"n'est pas valide" : "is invalid"
+"Veuillez saisir votre nouvel email" : "Please enter your new email"
+"Mot de passe incorrect" : "incorrect password"
+
+#Home
+
 "Un incontournable jeu coopératif de déduction" : "An essential cooperative game of deduction"
 "Code names Duo est un jeu coopératif pour 2 joueurs (ou plus) dans lequel vous devez retrouver tous vos Noms de Code avant la fin du temps imparti. Pour cela, vous devez, tour à tour, deviner ou faire deviner vos Noms de Code en donnant le meilleur indice possible." : "Code names Duo is a cooperative game for 2 players (or more) in which you must find all your Code Names before the time runs out. For this, you must, in turn, guess or make guess your Code Names by giving the best possible clue."
 "Règles" : "Rules"
@@ -69,3 +83,16 @@
 "Si tous les Noms de Codes verts sont découverts, vous gagnez la partie." : "If all green Code Names are discovered, you win the game."
 "Assassin - Jeton Temps" : "Assassin - Time Token"
 "Si l'un des joueurs découvrent une Tuiles noir vous perdez la partie. Si les 9 jeton Temps sont utilisés, la partie prend fin et vous perdez la partie." : "If any of the players discover a Black Tiles you lose the game. If the 9 Time Token is used, the game ends and you lose the game."
+
+#Salon
+
+"Mes Parties Rejointes" : "My Joined Parties"
+"Créer une partie" : "Create game"
+"Ici se trouves les parties que vous avez rejoints" : "Here are the parts you joined"
+"Reprendre" : "Resume"
+"Mes Partie Crées" : "My Parties Created"
+"En attente" : "Waiting"
+"Vous n'avez pas encore créé de partie" : "You have not yet created a game"
+"Partie en Attente de Joueur" : "Player Waiting Game"
+"Rejoindre en tant que J2" : "Join as J2"
+"Vous n'avez pas encore rejoint de partie" : "You have not yet joined a party"

@@ -73,6 +73,10 @@ li a .nav-links:visited {
     border-radius: 6px;
 }
 
+.icon{
+    display: flex;
+}
+
 .sidebar .icon{
     min-width: 60px;
     border-radius: 6px;
@@ -102,6 +106,9 @@ li a .nav-links:visited {
 }
 
 .bottom-content {
+    font-size: 15px;
+    line-height: 3.5;
+    place-items: center;
     border-radius: 5px;
     margin: 0;
 }
@@ -244,6 +251,79 @@ header .image-text .profession{
     width: calc(100% - 78px);
 }
 
+/*============== Link Profil ==============*/
+
+.nav-links{
+    display: grid;
+    font-size: 27px;
+    line-height: 1.5;
+    height: 100vh;
+    place-items: center;
+}
+
+.link_profil {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
+.active{
+    left: 0;
+}
+
+.link_profil::before,
+.link_profil::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+.link_profil::before {
+    background-color: #2CD93E;
+    height: 2px;
+    bottom: 0;
+    transform-origin: 100% 50%;
+    transform: scaleX(0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.link_profil::after {
+    content: attr(data-replace);
+    height: 100%;
+    top: 0;
+    transform-origin: 100% 50%;
+    transform: translate3d(200%, 0, 0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+    color: #2CD93E;
+}
+
+.link_profil:hover::before {
+    transform-origin: 0 50%;
+    transform: scaleX(1);
+}
+.link_profil:hover::after {
+    transform: translate3d(0, 0, 0);
+}
+
+.link_profil span {
+    display: inline-block;
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.link_profil:hover span {
+    transform: translate3d(-200%, 0, 0);
+}
+
+
+.link_profil {
+    text-decoration: none;
+    color: #18272F;
+    font-weight: 700;
+    vertical-align: top;
+}
+
+/*=========================================*/
+
+
 .profil{
     display: flex;
     flex-wrap: wrap;
@@ -268,6 +348,7 @@ header .image-text .profession{
 
 .card_profil:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 25px;
+    transition: 0.4s;
 }
 
 .number_card{
@@ -320,7 +401,7 @@ input[type=text], select, input[type=password], input[type=email] {
 
 
 
-button, input[type=submit], .bouton_connexion a{
+button, input[type=submit], .bouton_connexion a, .button_partie{
     width: fit-content;
     background-color: rgb(37, 37, 37);
     color: white;
@@ -333,8 +414,8 @@ button, input[type=submit], .bouton_connexion a{
     text-decoration: none !important;
 }
 
-button:hover, input[type=submit]:hover, .bouton_connexion a:hover{
-    background-color: #2CD93E !important;
+button:hover, input[type=submit]:hover, .bouton_connexion a:hover, .button_partie:hover{
+    background-color: var(--primary-color) !important;
     transition: 0.4s;
 }
 
@@ -436,38 +517,28 @@ form{
 
 .button_salon{
     display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    gap: 2rem;
+    row-gap: 2rem;
 }
 
 .button_partie{
-    background-color: #707070;
-    color: #fff;
-    padding: 1rem;
-    border-radius: 1.5rem;
-    font-size: 0.8rem;
-    text-decoration: none;
-    width: fit-content;
-}
-
-.button_partie:hover {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: relative;
+    top: 2rem;
 }
 
 .partie_container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 5rem;
+    margin-top: 5rem;
 }
 
-.partie_perso{
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2rem;
+.title_partie{
+
+    font-size: 30px;
+    font-weight: 500
+
 }
+
 
 input[type=search]{
     outline: none;
@@ -478,9 +549,6 @@ input[type=search]{
     width: 55%;
 }
 
-.avatar_salon{
-    width: 50px;
-}
 
 .card_container{
     display: flex;
@@ -488,50 +556,40 @@ input[type=search]{
     gap: 3rem;
 }
 
-.card_stats{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    gap: 5rem;
-    background-color: #fff;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    width: fit-content;
-    border: 1px solid rgb(40, 255, 87);
-}
-
-.card_stats:nth-child(2n){
-    border: 1px solid rgb(255, 40, 40);
-}
-
-.number_stats{
-    display: flex;
-    align-items: center;
-}
-
-.partie_aleatoire{
+.parties {
     display: flex;
     flex-direction: column;
     gap: 3rem;
 }
 
-.card_aleatoire{
+.card_partie{
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: 15rem;
+    gap: 5rem;
     background-color: #fff;
-    padding: 0.5rem;
+    padding: 1rem;
     border-radius: 1rem;
     width: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.card_partie:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 25px;
+    transition: 0.4s;
 }
 
 .button_rejoindre{
     text-decoration: none;
-    color: #000;
-    background-color: #e6e6e6;
+    color: #fff;
+    background-color: rgb(37, 37, 37);
     padding: 0.3rem;
     border-radius: 0.5rem;
+}
+
+.button_rejoindre:hover{
+    background-color: var(--primary-color);
+    transition: 0.4s;
 }
 
 @media only screen and (max-width: 700px) {

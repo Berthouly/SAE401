@@ -54,13 +54,17 @@ class PartieRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Partie
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findDispo($user): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.j2 IS NULL')
+            ->andWhere('p.joueur1 != :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+
+        ;
+    }
+
+
 }

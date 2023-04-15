@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -33,7 +34,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez saisir votre nouvel email',
                     ]),
                     new Email([
-                        'message' => 'Veuillez saisir un email valide',
+                        'message' => 'L\'adresse email "{{ value }}" n\'est pas valide.',
                     ]),
                 ],
             ])
@@ -50,6 +51,7 @@ class RegistrationFormType extends AbstractType
                 // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password',
+                    'id' => 'inputPassword',
                     'placeholder' => 'Mot de passe'],
                 'constraints' => [
                     new NotBlank([
@@ -61,6 +63,9 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
+                    new UserPassword([
+                        'message' => 'Mot de passe incorrect'
+                    ])
                 ],
             ])
         ;

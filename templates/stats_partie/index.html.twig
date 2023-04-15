@@ -66,25 +66,32 @@
 
     <div class="menu-bar">
         <div class="menu">
+
             <ul class="menu-links">
                 <li class="nav-links">
-                    <a href="{{ path('app_user_index' , {'id': user.id}) }}">
-                        <i class="bx bx-user-circle icon"></i>
+                    <a href="{{ path('app_user_index', {'id': user.id}) }}" class="icon">
+                        <i class="bx bx-user-circle icon" ></i>
+                    </a>
+                    <a href="{{ path('app_user_index', {'id': user.id}) }}" class="link_profil" data-replace="Profil">
                         <span class="text nav-text">Profil</span>
                     </a>
                 </li>
 
                 <li class="nav-links">
-                    <a href="{{ path('app_stats_partie_index') }}">
-                        <i class="bx bx-stats icon"></i>
+                    <a href="{{ path('app_stats_partie_index') }}" class="icon">
+                        <i class="bx bx-stats icon" ></i>
+                    </a>
+                    <a href="{{ path('app_stats_partie_index') }}" class="link_profil" data-replace="Stats">
                         <span class="text nav-text">Stats</span>
                     </a>
                 </li>
 
 
                 <li class="nav-links">
-                    <a href="#">
-                        <i class="bx bx-game icon"></i>
+                    <a href="{{ path('app_mes_parties', {'id': user.id}, false, {'_locale' : locale}) }}" class="icon">
+                        <i class="bx bx-game icon" ></i>
+                    </a>
+                    <a href="{{ path('app_mes_parties', {'id': user.id}, false, {'_locale' : locale}) }}" class="link_profil" data-replace="{{ 'Salon'|trans }}">
                         <span class="text nav-text">{{ 'Salon'|trans }}</span>
                     </a>
                 </li>
@@ -93,14 +100,18 @@
 
         <div class="bottom-content">
             <li class="">
-                <a href="{{ path('app_accueil') }}">
-                    <i class="bx bx-home icon"></i>
+                <a href="{{ path('app_accueil', {'_locale': locale }) }}" class="icon">
+                    <i class="bx bx-home icon" ></i>
+                </a>
+                <a href="{{ path('app_accueil', {'_locale': locale}) }}" data-replace="{{ 'Accueil'|trans }}" class="link_profil" >
                     <span class="text nav-text">{{ 'Accueil'|trans }}</span>
                 </a>
             </li>
             <li class="">
-                <a href="{{ path('app_logout') }}">
+                <a href="{{ path('app_logout') }}" class="icon">
                     <i class="bx bx-log-out icon"></i>
+                </a>
+                <a href="{{ path('app_logout') }}" data-replace="{{ 'Deconnexion'|trans }}" class="link_profil" >
                     <span class="text nav-text">{{ 'Deconnexion'|trans }}</span>
                 </a>
             </li>
@@ -141,11 +152,24 @@
         const body = document.querySelector('body'),
             sidebar = body.querySelector('nav'),
             toggle = body.querySelector(".toggle");
+        icons = document.querySelectorAll('.icon');
+        profilLink = document.querySelector('.link-profil');
 
-
-        toggle.addEventListener("click", () =>{
+        toggle.addEventListener('click', () => {
             sidebar.classList.toggle("close");
-        })
+            if(profilLink){
+                profilLink.classList.add('active');
+            }
+
+            icons.forEach(icon => {
+                    if (icon.style.display === 'none') {
+                        icon.style.display = 'flex';
+                    } else {
+                        icon.style.display = 'none';
+                    }
+                }
+            )
+        });
 
 
     </script>

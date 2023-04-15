@@ -40,9 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'joueur_id', targetEntity: StatsPartie::class)]
     private Collection $statsParties;
 
-    #[ORM\OneToMany(mappedBy: 'joueur', targetEntity: JsonPartie::class)]
-    private Collection $jsonParties;
-
     public function __construct()
     {
         $this->parties = new ArrayCollection();
@@ -159,36 +156,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($statsParty->getJoueurId() === $this) {
                 $statsParty->setJoueurId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, JsonPartie>
-     */
-    public function getJsonParties(): Collection
-    {
-        return $this->jsonParties;
-    }
-
-    public function addJsonParty(JsonPartie $jsonParty): self
-    {
-        if (!$this->jsonParties->contains($jsonParty)) {
-            $this->jsonParties->add($jsonParty);
-            $jsonParty->setJoueur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeJsonParty(JsonPartie $jsonParty): self
-    {
-        if ($this->jsonParties->removeElement($jsonParty)) {
-            // set the owning side to null (unless already changed)
-            if ($jsonParty->getJoueur() === $this) {
-                $jsonParty->setJoueur(null);
             }
         }
 

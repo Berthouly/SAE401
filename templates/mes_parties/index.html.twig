@@ -34,7 +34,7 @@
             <ul class="menu-links">
                 <li class="nav-links">
                     <a href="{{ path('app_user_index', {'id': user.id}) }}" class="icon">
-                    <i class="bx bx-user-circle icon" ></i>
+                        <i class="bx bx-user-circle icon" ></i>
                     </a>
                     <a href="{{ path('app_user_index', {'id': user.id}) }}" class="link_profil" data-replace="Profil">
                         <span class="text nav-text">Profil</span>
@@ -43,7 +43,7 @@
 
                 <li class="nav-links">
                     <a href="{{ path('app_stats_partie_index') }}" class="icon">
-                    <i class="bx bx-stats icon" ></i>
+                        <i class="bx bx-stats icon" ></i>
                     </a>
                     <a href="{{ path('app_stats_partie_index') }}" class="link_profil" data-replace="Stats">
                         <span class="text nav-text">Stats</span>
@@ -53,7 +53,7 @@
 
                 <li class="nav-links">
                     <a href="{{ path('app_mes_parties', {'id': user.id}, false, {'_locale' : locale}) }}" class="icon">
-                    <i class="bx bx-game icon" ></i>
+                        <i class="bx bx-game icon" ></i>
                     </a>
                     <a href="{{ path('app_mes_parties', {'id': user.id}, false, {'_locale' : locale}) }}" class="link_profil" data-replace="{{ 'Salon'|trans }}">
                         <span class="text nav-text">{{ 'Salon'|trans }}</span>
@@ -73,7 +73,7 @@
             </li>
             <li class="">
                 <a href="{{ path('app_logout') }}" class="icon">
-                <i class="bx bx-log-out icon"></i>
+                    <i class="bx bx-log-out icon"></i>
                 </a>
                 <a href="{{ path('app_logout') }}" data-replace="{{ 'Deconnexion'|trans }}" class="link_profil" >
                     <span class="text nav-text">{{ 'Deconnexion'|trans }}</span>
@@ -85,56 +85,81 @@
     </div>
 </nav>
 
-
 <section class="home">
-    <div class="text">Code Name Duo - {{ 'Profil de'|trans }} {{ app.user.name }}</div>
+    <div class="text">Code Name Duo</div>
 
-    <div class="section_input">
-        <div class="info_profil">
+    <div class="home_container">
+            <a href="{{ path('app_create') }}" class="button_partie">{{'Créer une partie'|trans}}</a>
 
-                {{ form_start(form, {'attr': {'class': 'form_info'}}) }}
-                <div class="input_icon">
-                    <div class="grid_input">
-                        <label for="info_name" class="text_profil">{{ 'Nom'|trans }}</label>
-                        {{ form_row(form.name) }}
+        <div class="partie_container">
+            <div class="parties">
+                <h2 class="title_partie">{{ 'Mes Parties Rejointes'|trans }}</h2>
+                <p>{{ 'Ici se trouves les parties que vous avez rejoints'|trans }}</p>
+            {% if partiesrejointes %}
+            {% for partie in partiesrejointes %}
+                    <div class="card_partie">
+                        <p>{{ partie.joueur1 }}</p>
+                        <p>VS</p>
+                        <p>{{ partie.joueur2 }}</p>
+                        <a href="{{ path('app_reprendre', {'id': partie.id, 'joueur': 'j2'}) }}" class="button_rejoindre">{{ 'Reprendre'|trans }}</a>
                     </div>
-                    <i class="bx bx-edit bx-edit"></i>
+
+            {% endfor %}
+            {% endif %}
+            </div>
+
+            {# PARTIES CREES #}
+            <div class="parties">
+                <h2 class="title_partie">{{'Mes Partie Crées'|trans}}</h2>
+            {% if partiescrees %}
+            {% for partie in partiescrees %}
+
+
+                <div class="card_partie">
+                    <p>{{ partie.joueur1 }}</p>
+                    <p>VS</p>
+                    {% if partie.joueur2 %}
+                    <p>{{ partie.joueur2 }}</p>
+                    {% else %}
+                        <p>{{ 'En attente'|trans }}</p>
+                    {% endif %}
+                    <a href="{{ path('app_reprendre', {'id': partie.id, 'joueur': 'j1'}) }}" class="button_rejoindre">{{ 'Reprendre'|trans }}</a>
+                </div>
+                    {% endfor %}
+                    {% else %}
+                        <p>{{'Vous n\'avez pas encore créé de partie'|trans}}</p>
+                    {% endif %}
+
+            </div>
+
+            <div class="parties">
+                <h2 class="title_partie">{{ 'Partie en Attente de Joueur'|trans }}</h2>
+            {# PARTIES DISPO #}
+            {% if partiesdispo %}
+            {% for partie in partiesdispo %}
+
+                <div class="card_partie">
+                    <p>{{ partie.joueur1 }}</p>
+                    <p{{ partie.joueur2 }}</p>
+                    <a href="{{ path('app_join', {'id': partie.id, 'joueur': 'j2'}) }}" class="button_rejoindre">{{ 'Rejoindre en tant que J2'|trans }}</a>
                 </div>
 
-
-                <div class="input_icon">
-                    <div class="grid_input">
-                        <label for="info_email" class="text_profil">Email</label>
-                        {{ form_row(form.email) }}
-                    </div>
-                    <i class="bx bx-edit bx-edit"></i>
-                </div>
-
-
-                <div class="bouton_connexion">
-                    <button type="submit">{{ 'Sauvegarder les infos'|trans }}</button>
-                </div>
-                {{ form_end(form) }}
-
-        </div>
-
-        <div class="changer_mdp">
-            <h1 class="title_connexion">{{ 'Changer de Mot de passe'|trans }} </h1>
-
-                <div class="bouton_connexion">
-                   <a href="{{ path('app_forgot_password_request', {'locale': locale}) }}" class="button_mdp">{{ 'Modifier mot de passe'|trans }}</a>
-                </div>
-
+            {% endfor %}
+            {% else %}
+                <p class="error_partie_dispo">{{ 'Vous n\'avez pas encore rejoint de partie'|trans}}</p>
+            {% endif %}
+            </div>
         </div>
     </div>
+
 </section>
 
 <script>
     const body = document.querySelector('body'),
         sidebar = body.querySelector('nav'),
         toggle = body.querySelector(".toggle");
-        icons = document.querySelectorAll('.icon');
-        profilLink = document.querySelector('.link-profil');
+    icons = document.querySelectorAll('.icon');
+    profilLink = document.querySelector('.link-profil');
 
     toggle.addEventListener('click', () => {
         sidebar.classList.toggle("close");
@@ -142,16 +167,15 @@
             profilLink.classList.add('active');
         }
 
-            icons.forEach(icon => {
+        icons.forEach(icon => {
                 if (icon.style.display === 'none') {
                     icon.style.display = 'flex';
                 } else {
                     icon.style.display = 'none';
                 }
-                }
-            )
+            }
+        )
     });
-
 </script>
 </body>
 </html>
