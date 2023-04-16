@@ -59,12 +59,23 @@ class PartieRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->where('p.j2 IS NULL')
             ->andWhere('p.joueur1 != :user')
+            ->andWhere('p.victoire IS NULL')
             ->setParameter('user', $user)
             ->getQuery()
             ->getResult();
 
         ;
     }
+
+    public function findGamesByUser($userId): array
+{
+    return $this->createQueryBuilder('p')
+        ->where('p.j1 = :userId OR p.j2 = :userId')
+        ->setParameter('userId', $userId)
+        ->getQuery()
+        ->getResult();
+}
+
 
 
 }

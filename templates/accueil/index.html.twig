@@ -1,113 +1,191 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Code Names{% endblock %}
-
-{% block body %}
-    {% block content %}
-        <section id="presentation">
-            <div id="element_presentation">
-                <h1><b>Code Names DUO</b></h1><br>
-                <h2><b>{{ 'Un incontournable jeu coopératif de déduction'|trans }}</b></h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="{{ asset('css/accueil.css') }}" rel="stylesheet" />
+    <title>SAE CodeNames</title>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <div class="banner-text">
+              <p>CodeNames     ◐     CodeNames     ◓     CodeNames     ◑     CodeNames     ◒     CodeNames     ◐     CodeNames     ◓     CodeNames     ◑     CodeNames     ◒     CodeNames     ◐     CodeNames     ◓     CodeNames      ◑     CodeNames     ◒     CodeNames</p>
             </div>
-            <img src="{{ asset('img/spy.png') }}" alt="spy_img">
-        </section>
-
-
-        <section class="section_rules" id="section_rules">
-            <img src="{{ asset('img/regle.png') }}" alt="regle_img" class="img_rules">
+          </div>
+        <nav class="menu" id="nav">
+            <h2 class="titre_nav">CodeNames</h2>
+                <ul class="items">
+                    <li class="item "><a href="#regles" class="link smoothlink">Règles</a></li>
+                    <li class="item "><a href="#cartes" class="link smoothlink">Cartes</a></li>
+                    <li class="item"><a href="#deroulement" class="link smoothlink">Fonctionnement</a></li>
+                {% if app.user %}
+                    <li class="item"><a href="{{ path('app_user_index', {'id': user.id},false, {'locale': locale}) }}" class="link2">Profil</a></li>
+                    <li class="item"><a href="{{ path('app_mes_parties', {'id': user.id}, false, {'_locale' : locale}) }}" class="link2" data-replace="{{ 'Salon'|trans }}">
+                        <span class="text nav-text">{{ 'Salon'|trans }}</span>
+                    </a></li>
+                {% else %}
+                    <li class="item"><a href="{{ path('app_login', {'locale': locale}) }}" class="link2">{{ 'Connexion'|trans }}</a></li>
+                {% endif %}
+                <li class="item"><a href="#" class="link2">English</a></li>
+                </ul>
+                <a href="{{ path('app_create', {'locale': locale}) }}" class="button_nav">{{ 'JOUER'|trans }}</a>
+            </nav>
+    </header>
+    <main>
+    <section id="presentation">
+        <div id="element_presentation">
+            <h1><b>Code Names DUO</b></h1><br>
+            <h2><b>{{ 'Un incontournable jeu coopératif de déduction'|trans }}</b></h2>
+        </div>
+        <img src="{{ asset('img/accueil/all.png') }}" id="all_images">
+    </section>
+    <section class="section_rules" id="regles">
+        <div class="champ_regle">
+            <img src="{{ asset('img/accueil/regle.png') }}" id="regle_book">
             <div class="text_rules">
-                <h2>{{ 'Règles'|trans }}:</h2><br>
-                <p>
-                    {{ 'Code names Duo est un jeu coopératif pour 2 joueurs (ou plus) dans lequel vous devez retrouver tous vos Noms de Code avant la fin du temps imparti. Pour cela, vous devez, tour à tour, deviner ou faire deviner vos Noms de Code en donnant le meilleur indice possible.'|trans }}
-                </p>
+                <h2>{{ 'Règles'|trans }}</h2><br>
+            <p>
+                 {{ 'Code names Duo est un jeu coopératif pour 2 joueurs (ou plus) dans lequel vous devez retrouver tous vos Noms de Code avant la fin du temps imparti. Pour cela, vous devez, tour à tour, deviner ou faire deviner vos Noms de Code en donnant le meilleur indice possible.'|trans }}
+            </p>
             </div>
-        </section>
-
-        <h1 class="jeu_title" id="section_show_card"><b>{{ 'Interface Jeu'|trans }}</b></h1>
-        <section class="section_show_card" >
-
-            <img src="{{ asset('img/card_name.png') }}" alt="card_name_img">
-            <div class="carte_nom">
-               <h2><b>{{ 'Cartes Nom de Code'|trans }}</b></h2><br><br>
-                <p>{{ 'Les cartes Nom de Code correspondent aux mots que vous devez deviner ou faire deviner à votre partenaire durant la partie. Ce sont toutes les tuiles présentent sur le plateau durant la partie.'|trans }}
+        </div>
+    </section>
+    <div class="banner">
+        <div class="banner-text">
+          <p>CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames     💀     CodeNames</p>
+        </div>
+      </div>
+    <section class="section_show_card" id="cartes">
+        <h1 class="jeu_title"><b>{{ 'Interface Jeu'|trans }}</b></h1>
+        <img src="{{ asset('img/accueil/cards_name.png') }}" class="cards_name">
+        <div class="carte_nom">
+            <h2><b>{{ 'Cartes Nom de Code'|trans }}</b></h2><br>
+            <p>{{ 'Les cartes Nom de Code correspondent aux mots que vous devez deviner ou faire deviner à votre partenaire durant la partie. Ce sont toutes les tuiles présentent sur le plateau durant la partie.'|trans }}
                 </p>
-            </div>
-
-            <div id="tuiles">
-                <h3><b>{{ '9 Tuiles vertes'|trans }}</b></h3><br>
-                <p>{{ 'Les tuiles Identité représentent les Noms de Code que vous devez trouver pendant la partie. Dès que le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit bien d’un des 9 Noms de Code verts du joueur qui fait deviner, la tuile deviendra verte pour indiquer que ce Nom de Code a été trouvé.'|trans }}</p>
-                <h3><b>{{ '3 Tuiles noires'|trans }}</b></h3><br>
-                <p>{{ 'La tuile Assassin représente la fin de la partie. Si le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit d’un Assassin pour le joueur qui fait deviner, la tuile devient noir et vous perdez la partie.'|trans }}</p><br>
-                <h3><b>{{ '13 Tuiles neutres'|trans }}</b></h3><br>
+        </div>
+        <div id="tuiles">
+            <span class="tuile_verte">
+                <h3><b>{{ '13 Tuiles neutres'|trans }}</b></h3>
                 <p>{{ 'Les tuiles Neutre ne représentent aucun danger dans la partie mais attention ! Car elles vous font perdre des jetons Temps inutilement.'|trans }}</p>
-            </div>
+            </span>
+            <span class="tuile_noir">
+                <h3><b>{{ '3 Tuiles noires'|trans }}</b></h3>
+                <p>{{ 'La tuile Assassin représente la fin de la partie. Si le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit d’un Assassin pour le joueur qui fait deviner, la tuile devient noir et vous perdez la partie.'|trans }}</p><br>
+            </span>
+        </div>
+        <div class="tuile_neutre">
+            <h3><b>{{ '9 Tuiles vertes'|trans }}</b></h3>
+            <p>{{ 'Les tuiles Identité représentent les Noms de Code que vous devez trouver pendant la partie. Dès que le joueur qui devine désigne un Nom de Code parmi les cartes disposées sur la table, et qu’il s’agit bien d’un des 9 Noms de Code verts du joueur qui fait deviner, la tuile deviendra verte pour indiquer que ce Nom de Code a été trouvé.'|trans }}</p>
+        </div>
             <div id="indice">
-                <h1 class="jeu_title">{{ 'Indices'|trans }}</h1>
-                <img src="{{ asset('img/indice.png') }}" alt="indice_img" id="img_indice">
+            <h1 class="jeu_title">{{ 'Indices'|trans }}</h1>
+            <img src="{{ asset('img/accueil/indice.png') }}" class="img_indice">
                 <p class="text_indice">
-                    {{ 'Pour indiquer à votre partenaire quelle tuile sélectionner, vous devez lui donner un indice sur le/les Noms de Code accompagné d’un chiffre. Le but étant de faire deviner un maximum de mots pour gagner du temps et remporter la partie.'|trans }}
+                {{ 'Pour indiquer à votre partenaire quelle tuile sélectionner, vous devez lui donner un indice sur le/les Noms de Code accompagné d’un chiffre. Le but étant de faire deviner un maximum de mots pour gagner du temps et remporter la partie.'|trans }}
                 </p>
-            </div>
-        </section>
+        </div>
+    </section>
+    <div id="double_banner">
+    <div id="banner_rotate">
+        <div class="banner-text">
+          <p>CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames</p>
+        </div>
+      </div>
+      <div id="banner_inverse">
+        <div class="banner-text">
+          <p>CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames     ◉     CodeNames</p>
+        </div>
+      </div>
+    </div>
+    <section class="section_deroule" id="deroulement">
+        <div class="text_deroule">
+            <h1>{{ 'Déroulement'|trans }}</h1><br>
+            <p>
+                1. {{ 'Donner un indice'|trans }} :<br>
+                {{ 'Pour faire deviner un ou plusieurs Noms de Code à votre partenaire, vous lui donnez un indice, qui doit être composé d’un mot accompagné d’un chiffre. Ce dernier indique à votre partenaire le nombre de Noms de Code en rapport avec ce mot. Il est intéressant de chercher un indice pouvant se rapporter à plusieurs Noms de Code afin d’en faire deviner un maximum au même tour.'|trans }} <br><br>
+                
+                {{ 'Le premier indice Votre partenaire ou vous-même pouvez donner le premier indice. Imaginons que vous trouvez un bon indice et que votre partenaire est toujours en pleine réflexion, vous pouvez alors proposer de donner le Premier indice. Vous donnez alors un mot et un chiffre. Maintenant, votre partenaire essaye de deviner à quels Noms de Code vous pensez.'|trans }}
+            </p>
+        </div>
+    </section>
+    <div id="img_plateau">
+    <img src="{{ asset('img/accueil/Plateau.png') }}">
+    </div>
 
-        <section class="section_deroule" id="section_deroule">
-            <div class="text_deroule">
-                <h1>{{ 'Déroulement'|trans }}</h1><br>
-                <p>
-                    1. {{ 'Donner un indice'|trans }} :<br>
-                    {{ 'Pour faire deviner un ou plusieurs Noms de Code à votre partenaire, vous lui donnez un indice, qui doit être composé d’un mot accompagné d’un chiffre. Ce dernier indique à votre partenaire le nombre de Noms de Code en rapport avec ce mot. Il est intéressant de chercher un indice pouvant se rapporter à plusieurs Noms de Code afin d’en faire deviner un maximum au même tour.'|trans }} <br><br>
-
-                    {{ 'Le premier indice Votre partenaire ou vous-même pouvez donner le premier indice. Imaginons que vous trouvez un bon indice et que votre partenaire est toujours en pleine réflexion, vous pouvez alors proposer de donner le Premier indice. Vous donnez alors un mot et un chiffre. Maintenant, votre partenaire essaye de deviner à quels Noms de Code vous pensez.'|trans }}
-                </p>
-            </div>
-            <img src="{{ asset('img/loupe.png') }}" alt="loupe_img" id="img_deroulement">
-        </section>
-
-        <section>
-            <div  id="plateau">
-                <img src="{{ asset('img/Plateau.png') }}" alt="plateau_img">
-                <div id="plateau_presente">
-                    <p>
-                        2. {{ 'Désignez un ou plusieurs Noms de Code - Mots'|trans }} :<br>
+    <section class="section_plateau">
+        <div  id="plateau">
+            <img src="{{ asset('img/accueil/block_bas.png') }}" class="block_bas">
+        <div id="plateau_presente">
+        <p>
+            2. {{ 'Désignez un ou plusieurs Noms de Code - Mots'|trans }} :<br>
                         {{ 'Lorsque votre partenaire donne un indice, vous devez découvrir la ou les cartes Nom de Code désignées par cet indice. Lorsque vous pensez avoir deviné un Nom de Code, cliquez sur la tuile correspondante.'|trans }}<br>
-
-                        ❱❱ {{ 'Si la tuile que vous touchez correspond à un Nom de Code vert pour votre partenaire, bingo ! Celle-ci deviendra verte lors du clique.'|trans }} <br>
-
-                        ❱❱ {{ 'Si la carte que vous touchez correspond à un Nom de Code noir pour votre partenaire, c’est raté. La tuile deviendra noire et vous perdez la partie. Le jeu se termine immédiatement.'|trans }}<br>
-
-                        ❱❱ {{ 'Si la carte que vous touchez correspond à un Nom de Code beige pour votre partenaire, vous perdez du temps. Un jeton Temps sera alors utilisé.'|trans }}
-                    </p>
-                </div>
+            <br>
+            ❱❱ {{ 'Si la tuile que vous touchez correspond à un Nom de Code vert pour votre partenaire, bingo ! Celle-ci deviendra verte lors du clique.'|trans }} <br>
+            <br>
+            ❱❱ {{ 'Si la carte que vous touchez correspond à un Nom de Code noir pour votre partenaire, c’est raté. La tuile deviendra noire et vous perdez la partie. Le jeu se termine immédiatement.'|trans }}<br>
+            <br>
+            ❱❱ {{ 'Si la carte que vous touchez correspond à un Nom de Code beige pour votre partenaire, vous perdez du temps. Un jeton Temps sera alors utilisé.'|trans }}
+        </p>
+    </div>
+</div>
+    <div id="pistolet">
+        <div id="fin_tour">
+        <p>
+            <b>{{ 'Fin du tour'|trans }}</b> <br><br>
+            
+            {{ 'Chaque tour se compose d’exactement un indice et au moins une carte Nom de Code touchée. Imaginons que vous n\'ayez pas rencontré d’Assassin, le tour peut se terminer de deux manières différentes.'|trans }}<br><br>
+        </p>
+        </div>
+        <div id="fin_partie">
+        <p>
+            <b>{{ 'Fin de la partie'|trans }} :</b><br>
+            <b>{{ 'Victoire'|trans }} :</b><br>
+            {{ 'Si tous les Noms de Codes verts sont découverts, vous gagnez la partie.'|trans }}<br><br>
+            <b>{{ 'Assassin - Jeton Temps '|trans }} :</b><br>
+            {{ 'Si l\'un des joueurs découvrent une Tuiles noir vous perdez la partie. Si les 9 jeton Temps sont utilisés, la partie prend fin et vous perdez la partie.'|trans }} 
+        </p>
+    </div>
+</section>
+</main>
+    
+    <section id="section_footer">
+        <div class="menu_footer smoothlink">
+            <h2 class="footer_nav">CodeNames</h2>
+                <ul class="items">
+                    <li class="item"><a href="#regles" class="link_footer">{{ 'Règles'|trans }}</a></li>
+                    <li class="item"><a href="#cartes" class="link_footer">Cartes Jeux</a></li>
+                    <li class="item"><a href="#deroulement" class="link_footer">{{ 'Déroulement'|trans }}</a></li>
+                </ul>
             </div>
-            <div id="pistolet">
-                <div id="pistolet_presente">
-                    <p>
-                        <b>{{ 'Fin du tour'|trans }}</b> <br><br>
-                        {{ 'Chaque tour se compose d’exactement un indice et au moins une carte Nom de Code touchée. Imaginons que vous n\'ayez pas rencontré d’Assassin, le tour peut se terminer de deux manières différentes.'|trans }}<br><br>
-                        <b>{{ 'Fin de la partie'|trans }}</b><br><br>
-                        <b>{{ 'Victoire'|trans }} :</b><br>
-                        {{ 'Si tous les Noms de Codes verts sont découverts, vous gagnez la partie.'|trans }}<br><br>
-                        <b>{{ 'Assassin - Jeton Temps '|trans }}:</b><br>
-                        {{ 'Si l\'un des joueurs découvrent une Tuiles noir vous perdez la partie. Si les 9 jeton Temps sont utilisés, la partie prend fin et vous perdez la partie.'|trans }}
-                    </p>
-                </div>
-                <img src="{{ asset('img/weapon.png') }}" alt="weapon_img" id="img_pistolet">
-            </div>
-        </section>
-
-
-
-        <script>
-
-
+            <a href="mentions.html" class="mentions">Mentions légales</a>
+    </section>
+		<script>
+//Menu shadow
             const scrollNav = () =>{
-                const nav = document.getElementById('nav')
+const nav = document.getElementById('nav')
 
-                this.scrollY >= 50 ? nav.classList.add('bg-nav')
-                    : nav.classList.remove('bg-nav')
-            }
-            window.addEventListener('scroll', scrollNav)
-        </script>
+this.scrollY >= 50 ? nav.classList.add('bg-nav')
+                   : nav.classList.remove('bg-nav')
+}
+window.addEventListener('scroll', scrollNav)
 
-        {% endblock %}
-{% endblock %}
+//Menu et footer scroll link
+const menuLinks = document.querySelectorAll('.smoothlink');
+menuLinks.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    targetSection.scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+    </script>
+</body>
+</html>

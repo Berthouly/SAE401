@@ -19,6 +19,9 @@
             {% if app.user %}
             <li class="item"><a href="{{ path('app_user_index', {'id': user.id},false, {'locale': locale}) }}" class="link">Profil</a></li>
             <li class="item"><a href="{{ path('app_logout') }}" class="link">{{ 'Deconnexion'|trans }}</a></li>
+            <li class="item"><a href="{{ path('app_mes_parties', {'id': user.id}, false, {'_locale' : locale}) }}" class="link" data-replace="{{ 'Salon'|trans }}">
+                        <span class="text nav-text">{{ 'Salon'|trans }}</span>
+                    </a></li>
             {% else %}
             <li class="item"><a href="{{ path('app_login', {'locale': locale}) }}" class="link">{{ 'Connexion'|trans }}</a></li>
             {% endif %}
@@ -32,7 +35,7 @@
                         </ul>
                 </li>
         </ul>
-        <a href="{{ path('app_create') }}" class="button_nav">{{ 'JOUER'|trans }}</a>
+        <a href="{{ path('app_create', {'locale': locale}) }}" class="button_nav">{{ 'JOUER'|trans }}</a>
 
     </nav>
 </header>

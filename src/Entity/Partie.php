@@ -31,6 +31,9 @@ class Partie
     #[ORM\Column(length: 255, nullable: true)]
     private ?int $j2 = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $victoire = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +95,18 @@ class Partie
     public function setJ2(?int $j2): self
     {
         $this->j2 = $j2;
+
+        return $this;
+    }
+
+    public function getVictoire(): ?string
+    {
+        return $this->victoire;
+    }
+
+    public function setVictoire(?string $victoire): self
+    {
+        $this->victoire = $victoire;
 
         return $this;
     }

@@ -45,9 +45,11 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+        // get locale
+        $locale = $request->getLocale();
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_accueil', ['_locale' => 'fr|en']));
+        return new RedirectResponse($this->urlGenerator->generate('app_accueil', ['_locale' => $locale]));
         # throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

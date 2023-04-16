@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AccueilController extends AbstractController
 {
-    #[Route('/{_locale}/accueil', name: 'app_accueil',requirements: ['_loacle' => 'fr|en'], methods: ['GET'])]
+    #[Route('/{_locale}/accueil', name: 'app_accueil',requirements: ['_locale' => 'fr|en'], methods: ['GET'])]
     public function index(Request $request): Response
     {
 

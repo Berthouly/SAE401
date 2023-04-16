@@ -8,6 +8,7 @@
     <title>Profil</title>
     <link rel="stylesheet" href="{{ asset('css/style_profil.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 </head>
@@ -89,12 +90,14 @@
     <div class="text">Code Name Duo</div>
 
     <div class="home_container">
-            <a href="{{ path('app_create') }}" class="button_partie">{{'Créer une partie'|trans}}</a>
+            <div class="boutons_partie">
+                <a href="{{ path('app_create', {'locale': locale}) }}" class="button_partie">{{'Créer une partie'|trans}}</a>
+                <a href="#" class="button_partie button_partie_dispo" onclick="scrolltopartiedispo(); return false;">{{'Voir les parties disponibles'|trans}}   <i class="fas fa-chevron-down"></i></a>
+            </div>
 
         <div class="partie_container">
             <div class="parties">
-                <h2 class="title_partie">{{ 'Mes Parties Rejointes'|trans }}</h2>
-                <p>{{ 'Ici se trouves les parties que vous avez rejoints'|trans }}</p>
+                <h2 class="title_partie">{{ 'Mes parties rejointes'|trans }}</h2>
             {% if partiesrejointes %}
             {% for partie in partiesrejointes %}
                     <div class="card_partie">
@@ -103,14 +106,16 @@
                         <p>{{ partie.joueur2 }}</p>
                         <a href="{{ path('app_reprendre', {'id': partie.id, 'joueur': 'j2'}) }}" class="button_rejoindre">{{ 'Reprendre'|trans }}</a>
                     </div>
-
             {% endfor %}
+            {% else %}
+                <p>{{ 'Aucune partie rejointe.'|trans }}</p>
+                <a href="#" class="button_partie button_partie_dispo" onclick="scrolltopartiedispo(); return false;">{{'Voir les parties disponibles'|trans}}   <i class="fas fa-chevron-down"></i></a>
             {% endif %}
             </div>
 
             {# PARTIES CREES #}
             <div class="parties">
-                <h2 class="title_partie">{{'Mes Partie Crées'|trans}}</h2>
+                <h2 class="title_partie">{{'Mes parties créées'|trans}}</h2>
             {% if partiescrees %}
             {% for partie in partiescrees %}
 
@@ -127,13 +132,13 @@
                 </div>
                     {% endfor %}
                     {% else %}
-                        <p>{{'Vous n\'avez pas encore créé de partie'|trans}}</p>
+                        <p>{{'Vous n\'avez pas encore créé de partie.'|trans}}</p>
                     {% endif %}
 
             </div>
 
-            <div class="parties">
-                <h2 class="title_partie">{{ 'Partie en Attente de Joueur'|trans }}</h2>
+            <div class="parties  parties_dispo" id="parties_dispo">
+                <h2 class="title_partie">{{ 'Parties disponibles en attente de joueur'|trans }}</h2>
             {# PARTIES DISPO #}
             {% if partiesdispo %}
             {% for partie in partiesdispo %}
@@ -146,7 +151,8 @@
 
             {% endfor %}
             {% else %}
-                <p class="error_partie_dispo">{{ 'Vous n\'avez pas encore rejoint de partie'|trans}}</p>
+                <p class="error_partie_dispo">{{ 'Aucune partie disponible.'|trans}}</p>
+                <a href="{{ path('app_create', {'locale': locale}) }}" class="button_partie">{{'Créer une partie'|trans}}</a>
             {% endif %}
             </div>
         </div>
@@ -176,6 +182,11 @@
             }
         )
     });
+
+   function scrolltopartiedispo() {
+       document.querySelector('#parties_dispo').scrollIntoView({ behavior: 'smooth' });
+   }
+
 </script>
 </body>
 </html>

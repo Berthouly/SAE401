@@ -9,23 +9,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Partie;
 
 #[Route('/stats/partie')]
 class StatsPartieController extends AbstractController
 {
     #[Route('/{_locale}/', name: 'app_stats_partie_index', requirements: ['_loacle' => 'fr|en'], methods: ['GET'])]
-    public function index(StatsPartieRepository $statsPartieRepository, Request $request): Response
+    public function index(ManagerRegistry $doctrine, Request $request): Response
     {
         $locale = $request->getLocale();
         $request->setLocale('fr');
 
-        $user = $this->getUser(); // Obtenez l'utilisateur courant
+        //get user
+        $user = $this->getUser();
+        $userid = $user->getId();
+        $username = $user->getName();
+
+        //getallparties gagnees
+        $allpartiesofuser = $doctrine->getRepository(Partie::class)->findGamesByUser($user);
 
 
         return $this->render('stats_partie/index.html.twig', [
             'locale' => $locale,
             'user' => $user,
-            'stats_parties' => $statsPartieRepository->findAll(),
+            'allpartiesofuser' => $allpartiesofuser,
+            'user'=> $user
         ]);
     }
 

@@ -4,28 +4,42 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 // redirect reponse
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Partie;
+use App\Entity\User;
+use App\Repository\PartieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\Form\Type\DoctrineType;
 
 
 class CreateController extends AbstractController
 {
-    #[Route('/create', name: 'app_create')]
-    public function index(EntityManagerInterface $entityManager, ManagerRegistry $doctrine): Response
+    #[Route('/{_locale}/create', name: 'app_create', requirements: ['_locale' => 'fr|en'], methods: ['GET'])]
+    public function index(EntityManagerInterface $entityManager, ManagerRegistry $doctrine, Request $request): Response
     {
 
         // je stocke le chemin vers le dossier json
-        $jsonPath = $this->getParameter('kernel.project_dir') . '/public/json/';
+        $jsonPath = $this->getParameter('kernel.project_dir') . '/public/json/'; 
+
+        //je récupère la locale
+        $locale = $request->getLocale();
+
+        if($locale == 'fr') {
+            $wordlist = file_get_contents($jsonPath.'wordslist.json');
+        } else {
+            $wordlist = file_get_contents($jsonPath.'wordslist_en.json');
+        }
 
         // RECUPERATION DES MOTS
         // je récupère tout
         // je mélange
         // je prends les 25 premiers
-        $wordlist = file_get_contents($jsonPath.'wordslist.json');
+        
+        
         $wordlistArray = json_decode($wordlist, true);
         shuffle($wordlistArray);
         $wordlist25 = array_slice($wordlistArray, 0, 25);
@@ -73,7 +87,7 @@ class CreateController extends AbstractController
         $j1 = $user;
         $j2 = null;
         $currentPlayer = $j1;
-        $dernierIndice = ['indicePHP', '4'];
+        $dernierIndice = ['Les indices ici', '1'];
         //je définis un nombre au hasard pour nommer la partie
         $partieID = rand(0, 1000000);
 
@@ -85,38 +99,47 @@ class CreateController extends AbstractController
             'currentPlayer' => $currentPlayer,
             'dernierIndice' => $dernierIndice,
             'agentstrouves' => 0,
+            'jetonsrestants' => 9
         ));
+                
+
+                //requete vers la bdd directement
+                $entityManager = $doctrine->getManager();
+
+                $partie = new Partie();
+                $partie->setSavefile($wordlist25);
+                $partie->setJoueur1($user);
+                $partie->setJ1($j1ID);
+
+                // Obtenez l'EntityManager à partir de l'injection de dépendances ou en utilisant le service locator
+                
+
+                // Ajouter l'entité à l'EntityManager
+                $entityManager->persist($partie);
+
+                // Exécuter la transaction enregistrant l'entité dans la base de données
+                $entityManager->flush();
+
+                //je recupère l'id de la nouvelle partie
+                $partieID = $partie->getId();
+                //je la convertis en string
+                $partieID = strval($partieID);
+                $joueur = 'j1';
+                
+
+                if($locale == 'fr') {
+                    // $url = "http://127.0.0.1:5173/partiefr/$partieID/" . base64_encode($joueur);
+                    $url = "http://127.0.0.1:5500/#/partiefr/$partieID/" . base64_encode($joueur);
+
+                } else {
+                    $url = "http://127.0.0.1:5173/partieen/$partieID/" . base64_encode($joueur);
+                }
 
 
-        //requete vers la bdd directement
-        $entityManager = $doctrine->getManager();
-
-        $partie = new Partie();
-        $partie->setSavefile($wordlist25);
-        $partie->setJoueur1($user);
-        $partie->setJ1($j1ID);
-
-        // Obtenez l'EntityManager à partir de l'injection de dépendances ou en utilisant le service locator
-
-
-        // Ajouter l'entité à l'EntityManager
-        $entityManager->persist($partie);
-
-        // Exécuter la transaction enregistrant l'entité dans la base de données
-        $entityManager->flush();
-
-        //je recupère l'id de la nouvelle partie
-        $partieID = $partie->getId();
-        //je la convertis en string
-        $partieID = strval($partieID);
-        $joueur = 'j1';
-        $url = "http://127.0.0.1:5173/testrebuild/$partieID/" . base64_encode($joueur);
-
-
-        return new RedirectResponse($url, 302, ['target' => '_blank']);
-        // return $this->render('create/index.html.twig', [
-        //     'response' => $response,
-        // ]);
-
+                return new RedirectResponse($url, 302, ['target' => '_blank']);
+                            // return $this->render('create/index.html.twig', [
+            //     'response' => $response,
+            // ]);
+            
     }
 }

@@ -129,23 +129,62 @@
             <img src="{{ asset('img/avatar.png') }}" alt="avatar" class="avatar">
             <!--<i class="bx bx-edit bx-edit"></i>-->
         </div>
-        {% for stats_partie in stats_parties %}
-        <div class="card_profil">
-            <p class="number_card">{{ stats_partie.partieJoue }}</p>
-            <p class="name_card">{{ 'Parties jouées'|trans }}</p>
+
+        
+    {% if allpartiesofuser %}
+    <div class="liste-record">
+        <h1>VOS PARTIES GAGNEES ({{ allpartiesofuser|filter(p => p.victoire == 'victoire')|length }})</h1>
+       
+            {% for partie in allpartiesofuser %}
+                {% if partie.victoire == 'victoire' %}    
+                    <div class="card_profil">
+                        {# JOUEUR 1 #}
+                        {% if partie.joueur1 == user.name %}
+                            <p class="number_card ">VOUS</p>
+                        {% else %}
+                            <p class="number_card ">{{ partie.joueur1 }}</p>
+                        {% endif %}
+                        AVEC
+                        {# JOUEUR 2 #}
+                        {% if partie.joueur2 == user.name %}
+                            <p class="number_card ">VOUS</p>
+                        {% else %}
+                            <p class="number_card ">{{ partie.joueur2 }}</p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+       </div>
+
+        
+        <div class="liste-record">
+        <h1>VOS PARTIES PERDUES ({{ allpartiesofuser|filter(p => p.victoire == 'defaite')|length }})</h1>
+            {% for partie in allpartiesofuser %}
+                {% if partie.victoire == 'defaite' %}    
+                    <div class="card_profil">
+                        {# JOUEUR 1 #}
+                        {% if partie.joueur1 == user.name %}
+                            <p class="number_card ">VOUS</p>
+                        {% else %}
+                            <p class="number_card ">{{ partie.joueur1 }}</p>
+                        {% endif %}
+                        AVEC
+                        {# JOUEUR 2 #}
+                        {% if partie.joueur2 == user.name %}
+                            <p class="number_card ">VOUS</p>
+                        {% else %}
+                            <p class="number_card ">{{ partie.joueur2 }}</p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
-        <div class="card_profil">
-            <p class="number_card">{{ stats_partie.partieGagne }}</p>
-            <p class="name_card">{{ 'Parties gagnées'|trans }}</p>
-        </div>
-    </div>
     {% else %}
+        <p class="number_card ">{{'Aucune donnée enregistrées'|trans}}</p>
+    {% endif %}
 
-    <div class="card_profil">
-        <p class="number_card ">no records found</p>
-    </div>
 
-    {% endfor %}
+    
 
 </section>
     <script>
