@@ -33,7 +33,7 @@
                 {% else %}
                     <li class="item"><a href="{{ path('app_login', {'locale': locale}) }}" class="link2">{{ 'Connexion'|trans }}</a></li>
                 {% endif %}
-                {% if locale === 'fr' %}
+                {% if locale is same as ('fr') %}
                 <li class="item"><a href="{{ path('app_accueil', {'_locale': 'en' }) }}" class="link2">English</a></li>
                 {% else %}
                 <li class="item"><a href="{{ path('app_accueil', {'_locale': 'fr' }) }}" class="link2">Français</a></li>
