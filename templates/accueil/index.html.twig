@@ -35,7 +35,11 @@
                 {% endif %}
                 <li class="item"><a href="#" class="link2">English</a></li>
                 </ul>
+                {% if app.user %}
                 <a href="{{ path('app_create', {'locale': locale}) }}" class="button_nav">{{ 'JOUER'|trans }}</a>
+                {% else %}
+                <a href="{{ path('app_login', {'locale': locale}) }}" class="button_nav">{{ 'JOUER'|trans }}</a>
+                {% endif %}
             </nav>
     </header>
     <main>
