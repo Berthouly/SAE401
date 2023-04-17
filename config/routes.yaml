@@ -8,5 +8,5 @@ homepage:
     path: /
     controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
     defaults:
-        path: /
+        path: /fr/accueil
         permanent: true
