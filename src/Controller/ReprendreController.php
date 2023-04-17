@@ -22,7 +22,7 @@ class ReprendreController extends AbstractController
 
         $request = new Request();
         $request->request->set('thisjoueur', 'valeur1');
-        $url = "http://127.0.0.1:5173/testrebuild/$id/" . base64_encode($joueur);
+        $url = "http://mmi21g01.sae401.ovh/jeu/?param1=$id&param2=$joueur";
 
         return new RedirectResponse($url, 302, ['target' => '_blank']);
 
