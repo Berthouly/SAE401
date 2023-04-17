@@ -12,15 +12,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/{_locale}/register', name: 'app_register', requirements: ['_loacle' => 'fr|en'])]
+    #[Route('/{_locale}/register', name: 'app_register', requirements: ['_locale' => 'fr|en'])]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $locale = $request->getLocale();
         $request->setLocale('fr');
-
 
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -47,8 +47,8 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/register.html.twig', [
-            'locale' => $locale,
             'registrationForm' => $form->createView(),
+            'locale' => $locale,
         ]);
     }
 }

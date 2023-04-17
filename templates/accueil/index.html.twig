@@ -29,6 +29,7 @@
                     <li class="item"><a href="{{ path('app_mes_parties', {'id': user.id}, false, {'_locale' : locale}) }}" class="link2" data-replace="{{ 'Salon'|trans }}">
                         <span class="text nav-text">{{ 'Salon'|trans }}</span>
                     </a></li>
+                    <li class="item"><a href="{{ path('app_logout') }}" class="link2">{{ 'Deconnexion'|trans }}</a></li>
                 {% else %}
                     <li class="item"><a href="{{ path('app_login', {'locale': locale}) }}" class="link2">{{ 'Connexion'|trans }}</a></li>
                 {% endif %}

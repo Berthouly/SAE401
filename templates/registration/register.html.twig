@@ -1,7 +1,5 @@
-
-
 {% block head %}
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--=============== REMIXICONS ===============-->
@@ -11,43 +9,21 @@
     <link href="{{ asset('css/style2.css') }}" rel="stylesheet"/>
     <script src="{{ asset('js/hide-pass-regis.js') }}"></script>
 
-    <title>{% block title %}Code Names {% endblock %}</title>
+    {# <title>{% block title %}Code Names {% endblock %}</title> #}
 {% endblock %}
+
+{% block title %}Register{% endblock %}
+
 {% block body %}
-    {% block content %}
-        {% for flash_error in app.flashes('verify_email_error') %}
-            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-        {% endfor %}
+    <h1>Register</h1>
 
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
 
-        <section class="section_connexion">
-            <div class="container_connexion">
-                <h1 class="title_connexion">{{ 'S\'inscrire'|trans }} </h1>
-                {{ form_start(registrationForm) }}
-
-                {{ form_row(registrationForm.name) }}
-
-
-                {{ form_row(registrationForm.email) }}
-
-
-                <div class="login_box">
-                    {{ form_row(registrationForm.plainPassword, {'attr': {'id': 'inputPassword'}}) }}
-                    <i class="ri-eye-off-fill login_eye" id="input-icon"></i>
-                </div>
-
-                {{ form_row(registrationForm.agreeTerms) }} <p>{{ 'Accepter les termes'|trans }}</p>
-
-                <hr>
-                <br>
-
-                <button type="submit" class="inscription_button">{{ 'Se connecter'|trans }}</button>
-
-                {{ form_end(registrationForm) }}
-            </div>
-
-        </section>
-
-    {% endblock %}
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
 {% endblock %}
-
