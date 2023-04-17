@@ -59,7 +59,7 @@ class PartieRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->where('p.j2 IS NULL')
             ->andWhere('p.joueur1 != :user')
-            ->andWhere('p.victoire IS NULL')
+            ->andWhere("p.victoire IS ''")
             ->setParameter('user', $user)
             ->getQuery()
             ->getResult();
