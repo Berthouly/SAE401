@@ -130,12 +130,12 @@ class CreateController extends AbstractController
                 if($locale == 'fr') {
                     // $url = "http://mmi21g01.sae401.ovh/jeu/partiefr/$partieID/" . base64_encode($joueur);
                     // $url = "http://127.0.0.1:5173/partiefr/$partieID/" . base64_encode($joueur); local
-                    $url = "http://127.0.0.1:5173/?param1=$partieID&param2=$joueur";
+                    $url = "http://mmi21g01.sae401.ovh/jeu/?param1=$partieID&param2=$joueur";
 
                 } else {
                     // $url = "http://127.0.0.1:5173/partieen/$partieID/" . base64_encode($joueur); local
                     // $url = "http://mmi21g01.sae401.ovh/jeu/partieen/$partieID/" . base64_encode($joueur);
-                    $url = "http://127.0.0.1:5173/?param1=$partieID&param2=$joueur";
+                    $url = "http://mmi21g01.sae401.ovh/jeu/?param1=$partieID&param2=$joueur";
 
                 }
 
