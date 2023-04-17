@@ -54,18 +54,17 @@ class PartieRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findDispo($user): array
-    {
-        return $this->createQueryBuilder('p')
-            ->where('p.j2 IS NULL')
-            ->andWhere('p.joueur1 != :user')
-            ->andWhere("p.victoire IS ''")
-            ->setParameter('user', $user)
-            ->getQuery()
-            ->getResult();
-
-        ;
-    }
+public function findDispo($user): array
+{
+    return $this->createQueryBuilder('p')
+        ->where('p.j2 IS NULL')
+        ->andWhere('p.joueur1 != :user')
+        ->andWhere('p.victoire = :victoire')
+        ->setParameter('user', $user)
+        ->setParameter('victoire', '')
+        ->getQuery()
+        ->getResult();
+}
 
     public function findGamesByUser($userId): array
 {
