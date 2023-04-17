@@ -1,3 +1,0 @@
-framework:
-    assets:
-        base_urls: '%app.base_url%'
